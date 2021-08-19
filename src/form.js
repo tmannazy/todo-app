@@ -1,38 +1,50 @@
 export { form };
+import { project } from './project';
 
 const form = () => {
     const formEl = document.createElement('form');
     const formItems = ['title', 'description', 'notes', 'priority', 'date', 'project'];
     const loopFormItems = formItems.forEach((formItem, index) => {
+        const charsInFormItem = formItem.substr(1);
+        const labelName = formItem.charAt(0).toUpperCase().concat(charsInFormItem);
+        const label = document.createElement('label');
+        const input = document.createElement('input');
+        const select = document.createElement('select');
         if (index < 3) {
-            const titleLabel = document.createElement('label');
-            const titleInput = document.createElement('input');
-            titleLabel.setAttribute('for', formItem);
-            titleLabel.textContent = formItem;
-            titleInput.setAttribute('id', formItem);
-            titleInput.setAttribute('type', 'text');
-            formEl.append(titleLabel, titleInput);
-        } else if (formItem === 'priority') {
-            const priorityLabel = document.createElement('label');
-            const prioritySelect = document.createElement('select');
-            const charsInFormItem = formItem.substr(1);
+            label.textContent = labelName;
+            label.setAttribute('for', formItem);
+            input.setAttribute('id', formItem);
+            input.setAttribute('type', 'text');
+            formEl.append(label, input);
+        }
+        else if (formItem === 'priority') {
             const priorityLevels = ['low', 'medium', 'high'];
             const loopPriorityLevels = priorityLevels.forEach(priorityLevel => {
                 const option = document.createElement('option');
                 const charRem = priorityLevel.substr(1);
+                const optionName = priorityLevel.charAt(0).toUpperCase().concat(charRem);
                 option.setAttribute('value', priorityLevel);
-                option.textContent = priorityLevel.charAt(0).toUpperCase().concat(charRem);
-                prioritySelect.appendChild(option);
+                option.textContent = optionName;
+                select.appendChild(option);
             });
 
-
-            priorityLabel.textContent = formItem.charAt(0).toUpperCase().concat(charsInFormItem);
-            priorityLabel.setAttribute('for', formItem);
-            prioritySelect.setAttribute('id', formItem);
-            prioritySelect.setAttribute('name', formItem);
-            formEl.append(priorityLabel, prioritySelect);
-        } else {
-            console.log(formItem);
+            label.textContent = labelName;
+            label.setAttribute('for', formItem);
+            select.setAttribute('id', formItem);
+            select.setAttribute('name', formItem);
+            formEl.append(label, select);
+        }
+        else if (formItem === 'date') {
+            label.textContent = labelName;
+            label.setAttribute('for', formItem);
+            input.setAttribute('type', 'date');
+            input.setAttribute('id', formItem);
+            formEl.append(label, input);
+        }
+        else if (formItem === 'project') {
+            label.textContent = labelName;
+            label.setAttribute('for', formItem);
+            formEl.append(label, project());
         }
     });
     const div = document.createElement('div');
