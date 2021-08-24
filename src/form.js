@@ -1,5 +1,5 @@
 export { form };
-import { project } from './project';
+import { showProjects } from './project';
 
 const form = () => {
     const formEl = document.createElement('form');
@@ -9,13 +9,19 @@ const form = () => {
         const labelName = formItem.charAt(0).toUpperCase().concat(charsInFormItem);
         const label = document.createElement('label');
         const input = document.createElement('input');
+        const textarea = document.createElement('textarea');
         const select = document.createElement('select');
-        if (index < 3) {
+        if (index < 2) {
             label.textContent = labelName;
             label.setAttribute('for', formItem);
             input.setAttribute('id', formItem);
             input.setAttribute('type', 'text');
             formEl.append(label, input);
+        }
+        else if (formItem === 'notes') {
+            label.textContent = labelName;
+            label.setAttribute('for', formItem);
+            textarea.setAttribute('id', formItem);
         }
         else if (formItem === 'priority') {
             const priorityLevels = ['low', 'medium', 'high'];
@@ -44,7 +50,7 @@ const form = () => {
         else if (formItem === 'project') {
             label.textContent = labelName;
             label.setAttribute('for', formItem);
-            formEl.append(label, project());
+            formEl.append(label, showProjects());
         }
     });
     const div = document.createElement('div');
