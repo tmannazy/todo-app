@@ -1,7 +1,7 @@
 import { form } from "./form";
 import { format } from 'date-fns';
 import { pageHeader } from "./header";
-
+import { footer } from "./footer";
 
 // cacheDOM
 const body = document.body;
@@ -10,6 +10,7 @@ const pageContent = document.querySelector('.content');
 
 pageContent.appendChild(form());
 body.prepend(pageHeader())
+body.appendChild(footer());
 
 
 
