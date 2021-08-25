@@ -22,6 +22,7 @@ const form = () => {
             label.textContent = labelName;
             label.setAttribute('for', formItem);
             textarea.setAttribute('id', formItem);
+            formEl.append(label, textarea);
         }
         else if (formItem === 'priority') {
             const priorityLevels = ['low', 'medium', 'high'];
@@ -53,7 +54,14 @@ const form = () => {
             formEl.append(label, showProjects());
         }
     });
+    const saveBtn = document.createElement('button');
+    const exitBtn = document.createElement('button');
     const div = document.createElement('div');
-    div.appendChild(formEl);
+
+    exitBtn.setAttribute('class', 'exit');
+    div.setAttribute('class', 'formDiv');
+    saveBtn.textContent = 'Save';
+    exitBtn.textContent = 'Exit';
+    div.append(formEl, saveBtn, exitBtn);
     return div;
 }

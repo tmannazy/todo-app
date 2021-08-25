@@ -7,10 +7,29 @@ import { footer } from "./footer";
 const body = document.body;
 const pageContent = document.querySelector('.content');
 
-
-pageContent.appendChild(form());
 body.prepend(pageHeader())
 body.appendChild(footer());
+
+
+const addBtn = document.querySelector('button');
+
+// bindEvents
+addBtn.addEventListener('click', () => {
+    pageContent.appendChild(form());
+    exit();
+});
+
+const exit = () => {
+    const exitBtn = document.querySelector('.exit');
+    exitBtn.addEventListener('click', () => {
+        const formDiv = document.querySelector('.formDiv');
+        pageContent.removeChild(formDiv);
+    });
+}
+
+
+
+
 
 
 
