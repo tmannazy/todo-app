@@ -1,4 +1,3 @@
-export { form };
 import { showProjects } from './project';
 
 const form = () => {
@@ -15,6 +14,7 @@ const form = () => {
             label.textContent = labelName;
             label.setAttribute('for', formItem);
             input.setAttribute('id', formItem);
+            input.setAttribute('name', formItem);
             input.setAttribute('type', 'text');
             formEl.append(label, input);
         }
@@ -22,6 +22,7 @@ const form = () => {
             label.textContent = labelName;
             label.setAttribute('for', formItem);
             textarea.setAttribute('id', formItem);
+            textarea.setAttribute('name', formItem);
             formEl.append(label, textarea);
         }
         else if (formItem === 'priority') {
@@ -31,6 +32,7 @@ const form = () => {
                 const charRem = priorityLevel.substr(1);
                 const optionName = priorityLevel.charAt(0).toUpperCase().concat(charRem);
                 option.setAttribute('value', priorityLevel);
+                option.setAttribute('name', priorityLevel);
                 option.textContent = optionName;
                 select.appendChild(option);
             });
@@ -44,7 +46,8 @@ const form = () => {
         else if (formItem === 'date') {
             label.textContent = labelName;
             label.setAttribute('for', formItem);
-            input.setAttribute('type', 'date');
+            input.setAttribute('type', formItem);
+            input.setAttribute('name', formItem);
             input.setAttribute('id', formItem);
             formEl.append(label, input);
         }
@@ -58,10 +61,16 @@ const form = () => {
     const exitBtn = document.createElement('button');
     const div = document.createElement('div');
 
+    formEl.setAttribute('id', 'todoForm');
     exitBtn.setAttribute('class', 'exit');
+    saveBtn.setAttribute('type', 'submit');
+    saveBtn.setAttribute('class', 'save');
     div.setAttribute('class', 'formDiv');
     saveBtn.textContent = 'Save';
     exitBtn.textContent = 'Exit';
-    div.append(formEl, saveBtn, exitBtn);
+    formEl.append(saveBtn, exitBtn);
+    div.append(formEl);
     return div;
 }
+
+export { form };
