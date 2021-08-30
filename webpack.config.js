@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+    mode: 'development',
     entry: './src/index.js',
     output: {
         filename: 'main.js',
@@ -14,7 +15,6 @@ module.exports = {
             title: 'Todo App',
         }),
     ],
-    devtool: 'inline-source-map',
     module: {
         rules: [
             {
@@ -24,7 +24,12 @@ module.exports = {
             {
                 test: /\.(png|svg|jpg|jpeg|gif)$/i,
                 type: 'asset/resource',
-            }
+            },
+            {
+                test: /\.js$/i,
+                enforce: 'pre',
+                use: ['source-map-loader'],
+            },
         ]
     }
 };
