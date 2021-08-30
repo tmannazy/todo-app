@@ -28,5 +28,9 @@ const delProject = removeProject => {
     // Remove the project from the array
 }
 
+const projectsArrFunc = () => {
+    return projectsArr;
+}
 
-export { showProjects, addProject, delProject };
+
+export { showProjects, addProject, delProject, projectsArrFunc };
