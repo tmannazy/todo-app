@@ -1,5 +1,3 @@
-export { pageHeader };
-
 const pageHeader = () => {
     const header = document.createElement('header');
     const h1 = document.createElement('h1');
@@ -11,3 +9,5 @@ const pageHeader = () => {
     header.append(h1, logo, button);
     return header;
 }
+
+export { pageHeader };
