@@ -1,4 +1,4 @@
-export { showProjects };
+export { showProjects, addProject, delProject };
 
 const projectsArr = ['home', 'office', 'coding', 'workout', 'fun'];
 
@@ -8,6 +8,7 @@ const showProjects = () => {
         const projectOption = document.createElement('option');
         const charRem = projectName.substr(1);
         projectOption.setAttribute('value', projectName);
+        projectOption.setAttribute('name', projectName);
         projectOption.textContent = projectName.charAt(0).toUpperCase().concat(charRem);
         projectSelect.appendChild(projectOption);
     });
@@ -20,5 +21,9 @@ const addProject = newProject => {
 }
 
 const delProject = removeProject => {
-
+    // Click on the project to remove
+    // Get the index of the project clicked
+    // Go through the array of projectsArr
+    // Check for the index of the project clicked by user
+    // Remove the project from the array
 }
