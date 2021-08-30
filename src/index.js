@@ -38,9 +38,9 @@ const save = () => {
         e.preventDefault();
         const displayTodoItem = document.querySelector('.displayTodos');
         const formData = new FormData(form);
-        for (let p of formData.entries()) {
-            // displayTodoItem.append(`${formData.get('name')}`);
-            displayTodoItem.append(`${p[0]}: ${p[1]}`);
+        for (let p of formData) {
+            displayTodoItem.append(`${p[0]}: ${p[1]}
+            `);
         }
     });
 }
