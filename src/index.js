@@ -2,6 +2,8 @@ import { form } from "./form";
 import { format } from 'date-fns';
 import { pageHeader } from "./header";
 import { footer } from "./footer";
+import { displayTodos } from "./displayTodos";
+
 
 // cacheDOM
 const body = document.body;
@@ -17,6 +19,7 @@ const addBtn = document.querySelector('button');
 addBtn.addEventListener('click', () => {
     pageContent.appendChild(form());
     exit();
+    save();
 });
 
 const exit = () => {
@@ -24,6 +27,21 @@ const exit = () => {
     exitBtn.addEventListener('click', () => {
         const formDiv = document.querySelector('.formDiv');
         pageContent.removeChild(formDiv);
+    });
+}
+
+const save = () => {
+    const saveBtn = document.querySelector('.save');
+    const form = document.forms.todoForm;
+    pageContent.appendChild(displayTodos());
+    saveBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const displayTodoItem = document.querySelector('.displayTodos');
+        const formData = new FormData(form);
+        for (let p of formData.entries()) {
+            // displayTodoItem.append(`${formData.get('name')}`);
+            displayTodoItem.append(`${p[0]}: ${p[1]}`);
+        }
     });
 }
 
