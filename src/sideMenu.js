@@ -10,16 +10,18 @@ const sideMenu = () => {
         if (element === 'project') {
             const span = document.createElement('span'),
                 projUnorderedList = document.createElement('ul'),
+                button = document.createElement('button'),
                 projects = projectsArrFunc();
 
             span.textContent = element;
+            button.textContent = 'Add Project';
             listItem.appendChild(span);
 
             const loopProjectItems = projects.forEach(project => {
                 const projListItems = document.createElement('li');
                 projListItems.textContent = project;
                 projListItems.setAttribute('class', project);
-                projUnorderedList.appendChild(projListItems);
+                projUnorderedList.append(projListItems, button);
                 listItem.appendChild(projUnorderedList);
             })
             unorderedList.appendChild(listItem);
