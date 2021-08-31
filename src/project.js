@@ -15,9 +15,26 @@ const showProjects = () => {
     return projectSelect;
 }
 
-const addProject = newProject => {
-    const addNewProject = projectsArr.push(newProject);
+const addProject = () => {
+    const getInputValue = document.querySelector('.project').value,
+        addNewProject = projectsArr.push(getInputValue);
+
+
     return addNewProject;
+}
+
+const createInpProj = () => {
+    const div = document.createElement('div'),
+        newProjInput = document.createElement('input'),
+        submitNewProj = document.createElement('button');
+
+    newProjInput.setAttribute('type', 'text');
+    newProjInput.setAttribute('class', 'project');
+    submitNewProj.setAttribute('type', 'submit');
+    submitNewProj.setAttribute('class', 'subNewProj');
+    submitNewProj.textContent = 'Save Project';
+    div.append(newProjInput, submitNewProj);
+    return div;
 }
 
 const delProject = removeProject => {
@@ -33,4 +50,4 @@ const projectsArrFunc = () => {
 }
 
 
-export { showProjects, addProject, delProject, projectsArrFunc };
+export { showProjects, addProject, delProject, createInpProj, projectsArrFunc };
