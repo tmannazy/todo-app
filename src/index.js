@@ -3,6 +3,7 @@ import { format } from 'date-fns';
 import { pageHeader } from "./header";
 import { footer } from "./footer";
 import { displayTodos } from "./displayTodos";
+import { sideMenu } from "./sideMenu";
 
 
 // cacheDOM
@@ -11,7 +12,7 @@ const pageContent = document.querySelector('.content');
 
 body.prepend(pageHeader())
 body.appendChild(footer());
-
+pageContent.appendChild(sideMenu());
 
 const addBtn = document.querySelector('button');
 
