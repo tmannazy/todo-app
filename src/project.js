@@ -10,17 +10,15 @@ const showProjects = () => {
         projectOption.setAttribute('name', projectName);
         projectOption.textContent = projectName.charAt(0).toUpperCase().concat(charRem);
         projectSelect.setAttribute('name', 'project');
+        projectSelect.setAttribute('id', 'project');
         projectSelect.appendChild(projectOption);
     });
     return projectSelect;
 }
 
-const addProject = () => {
-    const getInputValue = document.querySelector('.project').value,
-        addNewProject = projectsArr.push(getInputValue);
-
-
-    return addNewProject;
+const addProject = newProject => {
+    const addNewProjectToArr = projectsArr.push(newProject);
+    return addNewProjectToArr;
 }
 
 const createInpProj = () => {
