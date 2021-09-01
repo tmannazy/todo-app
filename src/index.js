@@ -4,6 +4,10 @@ import { pageHeader } from "./header";
 import { footer } from "./footer";
 import { displayTodos } from "./displayTodos";
 import { sideMenu } from "./sideMenu";
+import { addProject } from "./project";
+import { createInpProj } from "./project";
+import { TodoFunc } from "./todoItemsObj";
+import { myTodo } from "./todoItemsObj";
 
 
 // cacheDOM
@@ -15,6 +19,10 @@ body.appendChild(footer());
 pageContent.appendChild(sideMenu());
 
 const addBtn = document.querySelector('button');
+const addNewProject = document.querySelector('.newProject');
+const nav = document.querySelector('nav');
+
+
 
 // bindEvents
 addBtn.addEventListener('click', () => {
@@ -33,19 +41,32 @@ const exit = () => {
 
 const save = () => {
     const saveBtn = document.querySelector('.save');
-    const form = document.forms.todoForm;
-    pageContent.appendChild(displayTodos());
     saveBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        const displayTodoItem = document.querySelector('.displayTodos');
-        const formData = new FormData(form);
-        for (let p of formData) {
-            displayTodoItem.append(`${p[0]}: ${p[1]}
-            `);
-        }
+        const title = document.getElementById('title').value;
+        const description = document.getElementById('description').value;
+        const notes = document.getElementById('notes').value
+        const priority = document.getElementById('priority').value;
+        const date = document.getElementById('date').value;
+        const project = document.getElementById('project').value;
+        const genFormObjects = myTodo.push(TodoFunc(title, description, notes, priority, date, project));
     });
 }
 
+
+addNewProject.addEventListener('click', () => {
+    nav.append(createInpProj());
+    loadInputFunc();
+});
+
+const loadInputFunc = () => {
+    const getInputValue = document.querySelector('.subNewProj');
+
+    getInputValue.addEventListener('click', () => {
+        const newProjectValue = document.querySelector('.project').value;
+        addProject(newProjectValue);
+    });
+}
 
 
 
