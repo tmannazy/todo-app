@@ -25,17 +25,24 @@ const nav = document.querySelector('nav');
 
 
 // bindEvents
-addBtn.addEventListener('click', () => {
+const todoActions = () => {
     pageContent.appendChild(form());
+    const checkForm = document.getElementById('todoForm');
+    if (pageContent.contains(checkForm)) {
+        addBtn.removeEventListener('click', todoActions);
+    }
     exit();
     save();
-});
+};
+addBtn.addEventListener('click', todoActions);
+
 
 const exit = () => {
     const exitBtn = document.querySelector('.exit');
     exitBtn.addEventListener('click', () => {
         const formDiv = document.querySelector('.formDiv');
         pageContent.removeChild(formDiv);
+        addBtn.addEventListener('click', todoActions);
     });
 }
 
