@@ -4,8 +4,6 @@ const TodoFunc = (title, description, notes, priority, date, project) => {
     };
 }
 
-const myTodo = [{
-
-}]
+const myTodo = [{}]
 
 export { myTodo, TodoFunc };
