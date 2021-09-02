@@ -18,7 +18,7 @@ body.prepend(pageHeader())
 body.appendChild(footer());
 pageContent.appendChild(sideMenu());
 
-const addBtn = document.querySelector('button');
+const addBtn = document.querySelector('.addTodo');
 const addNewProject = document.querySelector('.newProject');
 const nav = document.querySelector('nav');
 

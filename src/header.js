@@ -6,6 +6,7 @@ const pageHeader = () => {
 
     h1.textContent = 'ToDo App';
     button.textContent = '+';
+    button.setAttribute('class', 'addTodo');
     header.append(h1, logo, button);
     return header;
 }
