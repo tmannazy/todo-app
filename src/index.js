@@ -50,6 +50,7 @@ const save = () => {
         const date = document.getElementById('date').value;
         const project = document.getElementById('project').value;
         const genFormObjects = myTodo.push(TodoFunc(title, description, notes, priority, date, project));
+        displayTodos();
     });
 }
 
