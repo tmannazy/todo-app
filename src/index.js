@@ -21,9 +21,9 @@ pageContent.appendChild(sideMenu());
 const addBtn = document.querySelector('.addTodo');
 const addNewProject = document.querySelector('.newProject');
 const nav = document.querySelector('nav');
-const divDisplay = document.createElement('div');
-divDisplay.setAttribute('class', 'displayTodos');
-pageContent.appendChild(divDisplay);
+const todosContainerDisplay = document.createElement('div');
+todosContainerDisplay.setAttribute('class', 'displayTodos');
+pageContent.appendChild(todosContainerDisplay);
 
 
 
@@ -61,7 +61,7 @@ const save = () => {
         const date = document.getElementById('date').value;
         const project = document.getElementById('project').value;
         const genFormObjects = myTodo.push(TodoFunc(title, description, notes, priority, date, project));
-        divDisplay.appendChild(displayTodos());
+        todosContainerDisplay.appendChild(displayTodos());
     });
 }
 
