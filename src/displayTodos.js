@@ -1,8 +1,19 @@
 import { myTodo } from "./todoItemsObj";
 
+const uniqueID = () => {
+    const checkLen = 20;
+    let taskID = (Math.floor((Math.random() * 25)) + 10).toString(36) + '_';
+    do {
+        taskID += Date.now().toString(36) + '_' +
+            (Math.floor(Math.random() * 35)).toString(36).substr(2);
+    } while (taskID.length < checkLen);
+    return taskID
+}
+
 const displayTodos = () => {
     const taskContainer = document.createElement('div');
     taskContainer.setAttribute('class', 'task-container');
+    taskContainer.setAttribute('id', uniqueID());
 
     const showMyTodo = myTodo;
     showMyTodo.forEach((todo) => {
