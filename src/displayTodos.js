@@ -1,13 +1,12 @@
 import { myTodo } from "./todoItemsObj";
 
 const displayTodos = () => {
-    const div = document.createElement('div');
-    div.setAttribute('class', 'displayTodos');
+    const taskContainer = document.createElement('div');
+    taskContainer.setAttribute('class', 'task-container');
+
     const showMyTodo = myTodo;
     showMyTodo.forEach((todo) => {
-        const taskContainer = document.createElement('div');
         const taskCheckbox = document.createElement('input');
-        taskContainer.setAttribute('class', 'task-container');
         taskCheckbox.setAttribute('type', 'checkbox');
         for (let showTodo in todo) {
             console.log(todo[showTodo]);
@@ -47,9 +46,8 @@ const displayTodos = () => {
             }
             taskContainer.append(taskCheckbox, taskItemLabel, taskItem);
         }
-        div.appendChild(taskContainer);
     });
-    return div;
+    return taskContainer;
 }
 
 export { displayTodos };
