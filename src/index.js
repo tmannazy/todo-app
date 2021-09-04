@@ -18,11 +18,11 @@ body.prepend(pageHeader())
 body.appendChild(footer());
 pageContent.appendChild(sideMenu());
 
-const addBtn = document.querySelector('.addTodo');
-const addNewProject = document.querySelector('.newProject');
+const addBtn = document.querySelector('.add-todo');
+const addNewProject = document.querySelector('.new-project');
 const nav = document.querySelector('nav');
 const todosContainerDisplay = document.createElement('div');
-todosContainerDisplay.setAttribute('class', 'displayTodos');
+todosContainerDisplay.setAttribute('class', 'display-todos');
 pageContent.appendChild(todosContainerDisplay);
 
 
@@ -31,7 +31,7 @@ pageContent.appendChild(todosContainerDisplay);
 // bindEvents
 const todoActions = () => {
     pageContent.appendChild(form());
-    const checkForm = document.getElementById('todoForm');
+    const checkForm = document.getElementById('todo-form');
     if (pageContent.contains(checkForm)) {
         addBtn.removeEventListener('click', todoActions);
     }
@@ -44,7 +44,7 @@ addBtn.addEventListener('click', todoActions);
 const exit = () => {
     const exitBtn = document.querySelector('.exit');
     exitBtn.addEventListener('click', () => {
-        const formDiv = document.querySelector('.formDiv');
+        const formDiv = document.querySelector('.form-div');
         pageContent.removeChild(formDiv);
         addBtn.addEventListener('click', todoActions);
     });
@@ -72,7 +72,7 @@ addNewProject.addEventListener('click', () => {
 });
 
 const loadInputFunc = () => {
-    const getInputValue = document.querySelector('.subNewProj');
+    const getInputValue = document.querySelector('.submit-new-proj');
 
     getInputValue.addEventListener('click', () => {
         const newProjectValue = document.querySelector('.project').value;

@@ -61,11 +61,11 @@ const form = () => {
     const exitBtn = document.createElement('button');
     const div = document.createElement('div');
 
-    formEl.setAttribute('id', 'todoForm');
+    formEl.setAttribute('id', 'todo-form');
     exitBtn.setAttribute('class', 'exit');
     saveBtn.setAttribute('type', 'submit');
     saveBtn.setAttribute('class', 'save');
-    div.setAttribute('class', 'formDiv');
+    div.setAttribute('class', 'form-div');
     saveBtn.textContent = 'Save';
     exitBtn.textContent = 'Exit';
     formEl.append(saveBtn, exitBtn);

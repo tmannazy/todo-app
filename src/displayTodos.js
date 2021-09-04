@@ -17,8 +17,12 @@ const displayTodos = () => {
 
     const showMyTodo = myTodo;
     showMyTodo.slice(-1).forEach((todo) => {
+        const checkboxContainer = document.createElement('div');
         const taskCheckbox = document.createElement('input');
         taskCheckbox.setAttribute('type', 'checkbox');
+        taskCheckbox.setAttribute('class', 'task-check');
+        checkboxContainer.setAttribute('class', 'check-container');
+        checkboxContainer.append(taskCheckbox);
         for (let showTodo in todo) {
             console.log(todo[showTodo]);
             const taskItem = document.createElement('div');
@@ -55,7 +59,7 @@ const displayTodos = () => {
                 default:
                     break;
             }
-            taskContainer.append(taskCheckbox, taskItemLabel, taskItem);
+            taskContainer.append(checkboxContainer, taskItemLabel, taskItem);
         }
     });
     return taskContainer;

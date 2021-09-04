@@ -29,7 +29,7 @@ const createInpProj = () => {
     newProjInput.setAttribute('type', 'text');
     newProjInput.setAttribute('class', 'project');
     submitNewProj.setAttribute('type', 'submit');
-    submitNewProj.setAttribute('class', 'subNewProj');
+    submitNewProj.setAttribute('class', 'submit-new-proj');
     submitNewProj.textContent = 'Save Project';
     div.append(newProjInput, submitNewProj);
     return div;

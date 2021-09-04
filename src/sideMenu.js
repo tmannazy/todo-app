@@ -15,7 +15,7 @@ const sideMenu = () => {
 
             span.textContent = element;
             button.textContent = 'Add Project';
-            button.setAttribute('class', 'newProject');
+            button.setAttribute('class', 'new-project');
             listItem.appendChild(span);
 
             const loopProjectItems = projects.forEach(project => {
