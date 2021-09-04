@@ -6,21 +6,39 @@ const displayTodos = () => {
     const showMyTodo = myTodo;
     showMyTodo.forEach((todo) => {
         const taskContainer = document.createElement('div');
+        const taskCheckbox = document.createElement('input');
+        taskContainer.setAttribute('class', 'task-container');
+        taskCheckbox.setAttribute('type', 'checkbox');
         for (let showTodo in todo) {
             console.log(todo[showTodo]);
             const taskItem = document.createElement('div');
             const taskItemLabel = document.createElement('label');
-            const taskCheckbox = document.createElement('input');
-            taskItem.setAttribute('class', 'items');
-            taskCheckbox.setAttribute('type', 'checkbox');
             switch (showTodo) {
                 case 'title':
-                    taskItem.setAttribute('class', `task${showTodo}`);
+                    taskItem.setAttribute('class', `task-${showTodo}`);
                     taskItem.textContent = `${todo[showTodo]}`;
                     taskItemLabel.textContent = showTodo;
                     break;
                 case 'description':
-                    taskItem.setAttribute('class', `task${showTodo}`);
+                    taskItem.setAttribute('class', `task-${showTodo}`);
+                    taskItem.textContent = `${todo[showTodo]}`;
+                    taskItemLabel.textContent = showTodo;
+                    break;
+                case 'notes':
+                    taskItem.setAttribute('class', `task-${showTodo}`);
+                    taskItem.textContent = `${todo[showTodo]}`;
+                    taskItemLabel.textContent = showTodo;
+                case 'priority':
+                    taskItem.setAttribute('class', `task-${showTodo}`);
+                    taskItem.textContent = `${todo[showTodo]}`;
+                    taskItemLabel.textContent = showTodo;
+                case 'date':
+                    taskItem.setAttribute('class', `task-${showTodo}`);
+                    taskItem.textContent = `${todo[showTodo]}`;
+                    taskItemLabel.textContent = showTodo;
+                    break;
+                case 'project':
+                    taskItem.setAttribute('class', `task-${showTodo}`);
                     taskItem.textContent = `${todo[showTodo]}`;
                     taskItemLabel.textContent = showTodo;
                     break;
@@ -28,8 +46,8 @@ const displayTodos = () => {
                     break;
             }
             taskContainer.append(taskCheckbox, taskItemLabel, taskItem);
-            div.appendChild(taskContainer);
         }
+        div.appendChild(taskContainer);
     });
     return div;
 }
