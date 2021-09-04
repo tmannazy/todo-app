@@ -16,7 +16,7 @@ const displayTodos = () => {
     taskContainer.setAttribute('id', uniqueID());
 
     const showMyTodo = myTodo;
-    showMyTodo.forEach((todo) => {
+    showMyTodo.slice(-1).forEach((todo) => {
         const taskCheckbox = document.createElement('input');
         taskCheckbox.setAttribute('type', 'checkbox');
         for (let showTodo in todo) {
