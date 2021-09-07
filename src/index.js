@@ -2,12 +2,10 @@ import { form } from "./form";
 import { format } from 'date-fns';
 import { pageHeader } from "./header";
 import { footer } from "./footer";
-import { displayTodos } from "./displayTodos";
+import { displayTodos, completedTodo } from "./displayTodos";
 import { sideMenu } from "./sideMenu";
-import { addProject } from "./project";
-import { createInpProj } from "./project";
-import { TodoFunc } from "./todoItemsObj";
-import { myTodo } from "./todoItemsObj";
+import { addProject, createInpProj } from "./project";
+import { TodoFunc, myTodo } from "./todoItemsObj";
 
 
 // cacheDOM
@@ -24,8 +22,6 @@ const nav = document.querySelector('nav');
 const todosContainerDisplay = document.createElement('div');
 todosContainerDisplay.setAttribute('class', 'display-todos');
 pageContent.appendChild(todosContainerDisplay);
-
-
 
 
 // bindEvents
@@ -62,8 +58,30 @@ const save = () => {
         const project = document.getElementById('project').value;
         const genFormObjects = myTodo.push(TodoFunc(title, description, notes, priority, date, project));
         todosContainerDisplay.appendChild(displayTodos());
+        completedTodo();
     });
 }
+
+// const removeCompletedTask = () => {
+const getAllTasks = document.querySelectorAll('.task-container');
+getAllTasks.forEach(task => {
+    task.addEventListener('click', (e) => {
+        // const checkedItem = document.querySelectorAll('.task-check');
+        // const checkedItem = document.querySelectorAll('.btn-chk');
+        // checkedItem.forEach((item, index) => {
+        //     if (e.checked) {
+        //         const taskContainerID = e.target.closest('div');
+        //         console.log(taskContainerID.id);
+        //         console.log(item[index]);
+        //     }
+        // })
+        // item.addEventListener('change', (e) => {
+    })
+});
+// }
+// })
+
+
 
 
 addNewProject.addEventListener('click', () => {
@@ -79,8 +97,6 @@ const loadInputFunc = () => {
         addProject(newProjectValue);
     });
 }
-
-
 
 
 
