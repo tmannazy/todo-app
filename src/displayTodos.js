@@ -19,12 +19,14 @@ const displayTodos = () => {
     showMyTodo.slice(-1).forEach((todo) => {
         const checkboxContainer = document.createElement('div');
         const taskCheckbox = document.createElement('input');
+        const btnn = document.createElement('button');
+        btnn.className = 'btn-chk';
+        btnn.textContent = 'Click me!';
         taskCheckbox.setAttribute('type', 'checkbox');
         taskCheckbox.setAttribute('class', 'task-check');
-        checkboxContainer.setAttribute('class', 'check-container');
+        checkboxContainer.setAttribute('class', 'task-check-container');
         checkboxContainer.append(taskCheckbox);
         for (let showTodo in todo) {
-            console.log(todo[showTodo]);
             const taskItem = document.createElement('div');
             const taskItemLabel = document.createElement('label');
             switch (showTodo) {
@@ -59,10 +61,30 @@ const displayTodos = () => {
                 default:
                     break;
             }
-            taskContainer.append(checkboxContainer, taskItemLabel, taskItem);
+            taskContainer.append(checkboxContainer, taskItemLabel, taskItem, btnn);
         }
     });
     return taskContainer;
 }
 
-export { displayTodos };
+
+const completedTodo = todoContainer => {
+    const getCheckedItemContainer = document.querySelectorAll('.task-container');
+    const getCheckItemID = getCheckedItemContainer.forEach((container, index) => {
+        // const saveContainerID = container.id;
+        const checkedItem = document.querySelectorAll('.task-check-container');
+        checkedItem.forEach(item => {
+            item.addEventListener('click', () => {
+                if (container.contains(item)) {
+                    console.log('Yeah! It is here' + ' ' + 'index:' + index);
+                }
+            })
+
+        });
+
+        // return checkedItem;
+    });
+}
+
+
+export { displayTodos, completedTodo };
