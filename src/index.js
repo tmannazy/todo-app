@@ -58,14 +58,17 @@ const save = () => {
         const project = document.getElementById('project').value;
         const genFormObjects = myTodo.push(TodoFunc(title, description, notes, priority, date, project));
         todosContainerDisplay.appendChild(displayTodos());
-        completedTodo();
+        // completedTodo();
     });
 }
 
 // const removeCompletedTask = () => {
-const getAllTasks = document.querySelectorAll('.task-container');
-getAllTasks.forEach(task => {
-    task.addEventListener('click', (e) => {
+const getAllTasks = document.querySelector('.display-todos')
+    // getAllTasks.forEach(task => {
+    .addEventListener('click', (e) => {
+        if (e.target !== e.currentTarget && e.target.className === 'task-check') {
+            completedTodo(e.target);
+        }
         // const checkedItem = document.querySelectorAll('.task-check');
         // const checkedItem = document.querySelectorAll('.btn-chk');
         // checkedItem.forEach((item, index) => {
@@ -76,8 +79,8 @@ getAllTasks.forEach(task => {
         //     }
         // })
         // item.addEventListener('change', (e) => {
-    })
-});
+        // })
+    });
 // }
 // })
 

@@ -72,15 +72,15 @@ const completedTodo = todoContainer => {
     // const getCheckedItemContainer = document.querySelectorAll('.task-container');
     // const getCheckItemID = getCheckedItemContainer.forEach((container, index) => {
     // const saveContainerID = container.id;
-    const checkedItem = document.querySelector('.display-todos');
+    // const checkedItem = document.querySelector('.display-todos');
     // checkedItem.forEach(item => {
     // item.addEventListener('click', (e) => {
     // if (e.target.parentNode.id === saveContainerID) {
-    checkedItem.addEventListener('click', e => {
-        if (e.target !== e.currentTarget && e.target.className === 'task-check') {
-            console.log('Yeah! It is here' + ' ' + 'index:');
-        } e.stopPropagation();
-    })
+    // checkedItem.addEventListener('click', e => {
+    // if (e.target !== e.currentTarget && e.target.className === 'task-check') {
+    console.log('Yeah! It is here' + ' ' + 'index:');
+    // } e.stopPropagation();
+    // })
 
     // });
 
