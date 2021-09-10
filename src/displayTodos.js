@@ -23,8 +23,8 @@ const displayTodos = () => {
         btnn.className = 'btn-chk';
         btnn.textContent = 'Click me!';
         taskCheckbox.setAttribute('type', 'checkbox');
-        taskCheckbox.setAttribute('class', 'task-check');
-        checkboxContainer.setAttribute('class', 'task-check-container');
+        taskCheckbox.setAttribute('class', 'task-checkbox');
+        checkboxContainer.setAttribute('class', 'task-checkbox-container');
         checkboxContainer.append(taskCheckbox);
         for (let showTodo in todo) {
             const taskItem = document.createElement('div');
@@ -68,24 +68,13 @@ const displayTodos = () => {
 }
 
 
-const completedTodo = todoContainer => {
-    // const getCheckedItemContainer = document.querySelectorAll('.task-container');
-    // const getCheckItemID = getCheckedItemContainer.forEach((container, index) => {
-    // const saveContainerID = container.id;
-    // const checkedItem = document.querySelector('.display-todos');
-    // checkedItem.forEach(item => {
-    // item.addEventListener('click', (e) => {
-    // if (e.target.parentNode.id === saveContainerID) {
-    // checkedItem.addEventListener('click', e => {
-    // if (e.target !== e.currentTarget && e.target.className === 'task-check') {
-    console.log('Yeah! It is here' + ' ' + 'index:');
-    // } e.stopPropagation();
-    // })
+const completedTodo = todoIndex => {
+    console.log(myTodo.at(todoIndex))
+    console.log(myTodo.length)
+    myTodo.splice(todoIndex, 1);
 
-    // });
+    console.log('Yeah! It is deleted' + ' ' + 'index:', todoIndex);
 
-    // return checkedItem;
-    // });
 }
 
 
