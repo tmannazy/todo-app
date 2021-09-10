@@ -58,31 +58,19 @@ const save = () => {
         const project = document.getElementById('project').value;
         const genFormObjects = myTodo.push(TodoFunc(title, description, notes, priority, date, project));
         todosContainerDisplay.appendChild(displayTodos());
-        // completedTodo();
     });
 }
 
-// const removeCompletedTask = () => {
-const getAllTasks = document.querySelector('.display-todos')
-    // getAllTasks.forEach(task => {
+const getTodoContainer = document.querySelector('.display-todos')
     .addEventListener('click', (e) => {
-        if (e.target !== e.currentTarget && e.target.className === 'task-check') {
-            completedTodo(e.target);
+        if (e.target !== e.currentTarget && e.target.className === 'task-checkbox') {
+            const taskCheckContainer = e.target.parentNode.parentNode;
+            const todoContainerChildElements = Array.from(e.currentTarget.children);
+            const todoIndexToRemove = todoContainerChildElements.indexOf(e.target.parentNode.parentNode);
+            taskCheckContainer.remove()
+            completedTodo(todoIndexToRemove);
         }
-        // const checkedItem = document.querySelectorAll('.task-check');
-        // const checkedItem = document.querySelectorAll('.btn-chk');
-        // checkedItem.forEach((item, index) => {
-        //     if (e.checked) {
-        //         const taskContainerID = e.target.closest('div');
-        //         console.log(taskContainerID.id);
-        //         console.log(item[index]);
-        //     }
-        // })
-        // item.addEventListener('change', (e) => {
-        // })
     });
-// }
-// })
 
 
 
