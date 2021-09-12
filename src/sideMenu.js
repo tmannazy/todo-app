@@ -7,6 +7,7 @@ const sideMenu = () => {
 
     const loopMenuItems = menuItems.forEach(element => {
         const listItem = document.createElement('li');
+        const listItemLink = document.createElement('a');
         if (element === 'project') {
             const span = document.createElement('span'),
                 projUnorderedList = document.createElement('ul'),
@@ -28,7 +29,9 @@ const sideMenu = () => {
             unorderedList.appendChild(listItem);
         }
         else {
-            listItem.textContent = element;
+            listItemLink.textContent = element;
+            listItemLink.setAttribute('href', '#');
+            listItem.append(listItemLink);
             listItem.setAttribute('class', element);
             unorderedList.appendChild(listItem);
         }
