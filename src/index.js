@@ -25,6 +25,11 @@ pageContent.appendChild(todosContainerDisplay);
 
 
 // bindEvents
+
+/*********************/
+// NEW TODO EVENTS //
+/*********************/
+
 const todoActions = () => {
     pageContent.appendChild(form());
     const checkForm = document.getElementById('todo-form');
@@ -48,8 +53,8 @@ const exit = () => {
 
 const save = () => {
     const saveBtn = document.querySelector('.save');
-    saveBtn.addEventListener('click', (e) => {
-        e.preventDefault();
+    saveBtn.addEventListener('click', (event) => {
+        event.preventDefault();
         const title = document.getElementById('title').value;
         const description = document.getElementById('description').value;
         const notes = document.getElementById('notes').value
@@ -57,23 +62,38 @@ const save = () => {
         const date = document.getElementById('date').value;
         const project = document.getElementById('project').value;
         const genFormObjects = myTodo.push(TodoFunc(title, description, notes, priority, date, project));
-        todosContainerDisplay.appendChild(displayTodos());
+        todosContainerDisplay.appendChild(displayTodos(myTodo));
     });
 }
 
-const getTodoContainer = document.querySelector('.display-todos')
-    .addEventListener('click', (e) => {
-        if (e.target !== e.currentTarget && e.target.className === 'task-checkbox') {
-            const taskCheckContainer = e.target.parentNode.parentNode;
-            const todoContainerChildElements = Array.from(e.currentTarget.children);
-            const todoIndexToRemove = todoContainerChildElements.indexOf(e.target.parentNode.parentNode);
-            taskCheckContainer.remove()
-            completedTodo(todoIndexToRemove);
+
+/******************************/
+// COMPLETED TODO EVENTS //
+/******************************/
+
+const getTodoContainer = document.querySelector('.display-todos');
+getTodoContainer.addEventListener('click', event => {
+    if (event.target !== event.currentTarget && event.target.className === 'task-checkbox') {
+        const taskCheckContainer = event.target.parentNode.parentNode;
+        const todoContainerChildElements = Array.from(event.currentTarget.children);
+        const todoIndexToRemove = todoContainerChildElements.indexOf(event.target.parentNode.parentNode);
+        taskCheckContainer.remove()
+        completedTodo(todoIndexToRemove);
+    }
+});
+
+
+const homeBtn = document.querySelector('.home')
+    .addEventListener('click', () => {
+        const arrLen = myTodo.length;
+        if (arrLen) {
+            myTodo.every(items => {
+                items.length > arrLen
+                todosContainerDisplay.appendChild(displayTodos(myTodo));
+            });
         }
-    });
-
-
-
+        // todosContainerDisplay.appendChild(displayTodos(myTodo));
+    })
 
 addNewProject.addEventListener('click', () => {
     nav.append(createInpProj());
