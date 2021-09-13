@@ -10,13 +10,12 @@ const uniqueID = () => {
     return taskID
 }
 
-const displayTodos = () => {
+const displayTodos = todoArr => {
     const taskContainer = document.createElement('div');
     taskContainer.setAttribute('class', 'task-container');
     taskContainer.setAttribute('id', uniqueID());
 
-    const showMyTodo = myTodo;
-    showMyTodo.slice(-1).forEach((todo) => {
+    const createTodoItems = todo => {
         const checkboxContainer = document.createElement('div');
         const taskCheckbox = document.createElement('input');
         const btnn = document.createElement('button');
@@ -63,7 +62,18 @@ const displayTodos = () => {
             }
             taskContainer.append(checkboxContainer, taskItemLabel, taskItem, btnn);
         }
-    });
+    }
+    if (todoArr === undefined) {
+        myTodo.forEach(todo => {
+            createTodoItems(todo);
+        })
+    } else {
+        const showMyTodo = todoArr;
+        showMyTodo.slice(-1).forEach(todo => {
+            createTodoItems(todo)
+        })
+    }
+
     return taskContainer;
 }
 
