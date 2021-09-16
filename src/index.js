@@ -85,12 +85,9 @@ getTodoContainer.addEventListener('click', event => {
 
 const homeBtn = document.querySelector('.home')
     .addEventListener('click', () => {
-        // const arrLen = myTodo.length;
-        // for (const items of myTodo) {
-        //     if (!arrLen) {
-        // todosContainerDisplay.appendChild(displayTodos(myTodo));
-        // }
-        todosContainerDisplay.appendChild(displayTodos());
+        if (!todosContainerDisplay.hasChildNodes()) {
+            todosContainerDisplay.appendChild(displayTodos());
+        }
     });
 
 addNewProject.addEventListener('click', () => {
