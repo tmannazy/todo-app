@@ -4,6 +4,7 @@ const sideMenu = () => {
     const menuItems = ['home', 'today', 'week', 'project'],
         nav = document.createElement('nav'),
         unorderedList = document.createElement('ul');
+    unorderedList.setAttribute('class', 'project-list');
 
     const loopMenuItems = menuItems.forEach(element => {
         const listItem = document.createElement('li');
@@ -19,20 +20,19 @@ const sideMenu = () => {
             button.setAttribute('class', 'new-project');
             listItem.appendChild(span);
 
-            // const loopProjectItems = projects.forEach(project => {
             for (let i = 0; i < projects.length; i++) {
                 const projListItems = document.createElement('li');
                 projListItems.textContent = projects[i];
                 projListItems.setAttribute('class', projects[i]);
-                if (i === 5) {
+                if (i >= 5) {
                     const delProjectSpan = document.createElement('button');
                     delProjectSpan.textContent = 'Del'
                     projListItems.appendChild(delProjectSpan);
-                    projUnorderedList.append(projListItems, button);
+                    projUnorderedList.appendChild(projListItems);
                     listItem.appendChild(projUnorderedList);
                 }
                 else {
-                    projUnorderedList.append(projListItems);
+                    projUnorderedList.append(projListItems, button);
                     listItem.appendChild(projUnorderedList);
                 }
                 unorderedList.appendChild(listItem);
