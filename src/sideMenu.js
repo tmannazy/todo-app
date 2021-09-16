@@ -19,14 +19,24 @@ const sideMenu = () => {
             button.setAttribute('class', 'new-project');
             listItem.appendChild(span);
 
-            const loopProjectItems = projects.forEach(project => {
+            // const loopProjectItems = projects.forEach(project => {
+            for (let i = 0; i < projects.length; i++) {
                 const projListItems = document.createElement('li');
-                projListItems.textContent = project;
-                projListItems.setAttribute('class', project);
-                projUnorderedList.append(projListItems, button);
-                listItem.appendChild(projUnorderedList);
-            })
-            unorderedList.appendChild(listItem);
+                projListItems.textContent = projects[i];
+                projListItems.setAttribute('class', projects[i]);
+                if (i === 5) {
+                    const delProjectSpan = document.createElement('button');
+                    delProjectSpan.textContent = 'Del'
+                    projListItems.appendChild(delProjectSpan);
+                    projUnorderedList.append(projListItems, button);
+                    listItem.appendChild(projUnorderedList);
+                }
+                else {
+                    projUnorderedList.append(projListItems);
+                    listItem.appendChild(projUnorderedList);
+                }
+                unorderedList.appendChild(listItem);
+            }
         }
         else {
             listItemLink.textContent = element;
