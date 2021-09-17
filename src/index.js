@@ -91,10 +91,17 @@ homeBtn.addEventListener('click', () => {
     }
 });
 
-addNewProject.addEventListener('click', () => {
+
+const newProjectActions = () => {
     nav.append(createNewProjInput());
     loadInputFunc();
-});
+    const submitNewProjContainer = document.querySelector('.submit-new-proj-container');
+    if (pageContent.contains(submitNewProjContainer)) {
+        addNewProject.removeEventListener('click', newProjectActions);
+    };
+}
+
+addNewProject.addEventListener('click', newProjectActions);
 
 const loadInputFunc = () => {
     const getInputValue = document.querySelector('.submit-new-proj')
