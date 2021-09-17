@@ -95,10 +95,11 @@ homeBtn.addEventListener('click', () => {
 const newProjectActions = () => {
     nav.append(createNewProjInput());
     loadInputFunc();
+    closeNewProject()
     const submitNewProjContainer = document.querySelector('.submit-new-proj-container');
     if (pageContent.contains(submitNewProjContainer)) {
         addNewProject.removeEventListener('click', newProjectActions);
-    };
+    }
 }
 
 const loadInputFunc = () => {
@@ -114,7 +115,17 @@ const loadInputFunc = () => {
         });
 }
 
+const closeNewProject = () => {
+    const closeNewProjectBtn = document.querySelector('.close-new-project-btn')
+        .addEventListener('click', () => {
+            document.querySelector('.submit-new-proj-container').remove();
+            addNewProject.addEventListener('click', newProjectActions);
+        });
+}
+
 addNewProject.addEventListener('click', newProjectActions);
+
+
 
 
 
