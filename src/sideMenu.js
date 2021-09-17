@@ -1,11 +1,11 @@
 import { projectsArrFunc } from "./project";
 
-const sideMenu = () => {
-    const menuItems = ['home', 'today', 'week', 'project'],
-        nav = document.createElement('nav'),
-        unorderedList = document.createElement('ul');
-    unorderedList.setAttribute('class', 'project-list');
+const menuItems = ['home', 'today', 'week', 'project'],
+    nav = document.createElement('nav'),
+    unorderedList = document.createElement('ul');
 
+
+const sideMenu = () => {
     const loopMenuItems = menuItems.forEach(element => {
         const listItem = document.createElement('li');
         const listItemLink = document.createElement('a');
@@ -14,29 +14,21 @@ const sideMenu = () => {
                 projUnorderedList = document.createElement('ul'),
                 button = document.createElement('button'),
                 projects = projectsArrFunc();
+            projUnorderedList.setAttribute('class', 'project-list');
 
             span.textContent = element;
             button.textContent = 'Add Project';
             button.setAttribute('class', 'new-project');
             listItem.appendChild(span);
 
-            for (let i = 0; i < projects.length; i++) {
+            const loopProjectItems = projects.forEach(project => {
                 const projListItems = document.createElement('li');
-                projListItems.textContent = projects[i];
-                projListItems.setAttribute('class', projects[i]);
-                if (i >= 5) {
-                    const delProjectSpan = document.createElement('button');
-                    delProjectSpan.textContent = 'Del'
-                    projListItems.appendChild(delProjectSpan);
-                    projUnorderedList.appendChild(projListItems);
-                    listItem.appendChild(projUnorderedList);
-                }
-                else {
-                    projUnorderedList.append(projListItems, button);
-                    listItem.appendChild(projUnorderedList);
-                }
-                unorderedList.appendChild(listItem);
-            }
+                projListItems.textContent = project;
+                projListItems.setAttribute('class', project);
+                projUnorderedList.append(projListItems, button);
+                listItem.appendChild(projUnorderedList);
+            })
+            unorderedList.appendChild(listItem);
         }
         else {
             listItemLink.textContent = element;
@@ -50,4 +42,19 @@ const sideMenu = () => {
     return nav;
 }
 
-export { sideMenu };
+const newAddedProjectInSideMenu = () => {
+    const projects = projectsArrFunc();
+    for (let i = 0; i < projects.length; i++) {
+        const newProjListItems = document.createElement('li'),
+            delProjectBtn = document.createElement('button');
+        if (i >= 5) {
+            newProjListItems.textContent = projects[i];
+            newProjListItems.setAttribute('class', projects[i]);
+            delProjectBtn.textContent = 'Del'
+            newProjListItems.appendChild(delProjectBtn);
+        }
+        return newProjListItems;
+    }
+}
+
+export { sideMenu, newAddedProjectInSideMenu };
