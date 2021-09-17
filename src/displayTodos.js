@@ -67,7 +67,7 @@ const displayTodos = todoArr => {
         myTodo.forEach(todo => {
             createTodoItems(todo);
         })
-    } else {
+    } else if (todoArr) {
         const showMyTodo = todoArr;
         showMyTodo.slice(-1).forEach(todo => {
             createTodoItems(todo)
