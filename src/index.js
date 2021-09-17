@@ -4,7 +4,7 @@ import { pageHeader } from "./header";
 import { footer } from "./footer";
 import { displayTodos, completedTodo } from "./displayTodos";
 import { sideMenu } from "./sideMenu";
-import { addProject, createInpProj } from "./project";
+import { addProject, createNewProjInput } from "./project";
 import { TodoFunc, myTodo } from "./todoItemsObj";
 
 
@@ -18,6 +18,7 @@ pageContent.appendChild(sideMenu());
 
 const addBtn = document.querySelector('.add-todo');
 const addNewProject = document.querySelector('.new-project');
+const homeBtn = document.querySelector('.home');
 const nav = document.querySelector('nav');
 const todosContainerDisplay = document.createElement('div');
 todosContainerDisplay.setAttribute('class', 'display-todos');
@@ -70,7 +71,6 @@ const save = () => {
 /******************************/
 // COMPLETED TODO EVENTS //
 /******************************/
-
 const getTodoContainer = document.querySelector('.display-todos');
 getTodoContainer.addEventListener('click', event => {
     if (event.target !== event.currentTarget && event.target.className === 'task-checkbox') {
@@ -82,26 +82,27 @@ getTodoContainer.addEventListener('click', event => {
     }
 });
 
-
-const homeBtn = document.querySelector('.home')
-    .addEventListener('click', () => {
-        if (!todosContainerDisplay.hasChildNodes()) {
-            todosContainerDisplay.appendChild(displayTodos());
-        }
-    });
+/*****************************/
+// SideBar Navigation //
+/*****************************/
+homeBtn.addEventListener('click', () => {
+    if (!todosContainerDisplay.hasChildNodes()) {
+        todosContainerDisplay.appendChild(displayTodos());
+    }
+});
 
 addNewProject.addEventListener('click', () => {
-    nav.append(createInpProj());
+    nav.append(createNewProjInput());
     loadInputFunc();
 });
 
 const loadInputFunc = () => {
-    const getInputValue = document.querySelector('.submit-new-proj');
-
-    getInputValue.addEventListener('click', () => {
-        const newProjectValue = document.querySelector('.project').value;
-        addProject(newProjectValue);
-    });
+    const getInputValue = document.querySelector('.submit-new-proj')
+        .addEventListener('click', () => {
+            const newProjectValue = document.querySelector('.project').value;
+            const projectListContainer = document.querySelector('.project-list');
+            projectListContainer.insertBefore(projectListContainer.appendChild(addProject(newProjectValue)), addNewProject);
+        });
 }
 
 
