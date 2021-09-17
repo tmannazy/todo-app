@@ -1,3 +1,5 @@
+import { newAddedProjectInSideMenu } from "./sideMenu";
+
 const projectsArr = ['home', 'office', 'coding', 'workout', 'fun'];
 
 const showProjects = () => {
@@ -17,21 +19,24 @@ const showProjects = () => {
 }
 
 const addProject = newProject => {
-    const addNewProjectToArr = projectsArr.push(newProject);
-    return addNewProjectToArr;
+    projectsArr.push(newProject);
+    return newAddedProjectInSideMenu();
 }
 
-const createInpProj = () => {
+const createNewProjInput = () => {
     const div = document.createElement('div'),
         newProjInput = document.createElement('input'),
-        submitNewProj = document.createElement('button');
+        submitNewProj = document.createElement('button'),
+        closeNewProjInput = document.createElement('button');
 
+    div.setAttribute('class', 'new-proj-container');
     newProjInput.setAttribute('type', 'text');
     newProjInput.setAttribute('class', 'project');
     submitNewProj.setAttribute('type', 'submit');
     submitNewProj.setAttribute('class', 'submit-new-proj');
     submitNewProj.textContent = 'Save Project';
-    div.append(newProjInput, submitNewProj);
+    closeNewProjInput.textContent = 'Close';
+    div.append(newProjInput, submitNewProj, closeNewProjInput);
     return div;
 }
 
@@ -48,4 +53,4 @@ const projectsArrFunc = () => {
 }
 
 
-export { showProjects, addProject, delProject, createInpProj, projectsArrFunc };
+export { showProjects, addProject, delProject, createNewProjInput, projectsArrFunc };
