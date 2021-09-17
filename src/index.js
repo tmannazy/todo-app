@@ -101,8 +101,6 @@ const newProjectActions = () => {
     };
 }
 
-addNewProject.addEventListener('click', newProjectActions);
-
 const loadInputFunc = () => {
     const getInputValue = document.querySelector('.submit-new-proj')
         .addEventListener('click', () => {
@@ -110,8 +108,13 @@ const loadInputFunc = () => {
             const projectListContainer = document.querySelector('.project-list');
             projectListContainer.insertBefore(projectListContainer.appendChild(addProject(newProjectValue)), addNewProject);
         });
+    const newProjectValue = document.querySelector('.project')
+        .addEventListener('focus', event => {
+            event.target.value = '';
+        });
 }
 
+addNewProject.addEventListener('click', newProjectActions);
 
 
 
