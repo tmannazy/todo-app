@@ -94,24 +94,38 @@ homeBtn.addEventListener('click', () => {
 
 const newProjectActions = () => {
     nav.append(createNewProjInput());
-    loadInputFunc();
-    closeNewProject()
+    displayNewProjectItem();
+    closeNewProject();
+    // delAddedProjItem();
+
     const submitNewProjContainer = document.querySelector('.submit-new-proj-container');
     if (pageContent.contains(submitNewProjContainer)) {
         addNewProject.removeEventListener('click', newProjectActions);
     }
 }
 
-const loadInputFunc = () => {
+const displayNewProjectItem = () => {
     const getInputValue = document.querySelector('.submit-new-proj')
         .addEventListener('click', () => {
             const newProjectValue = document.querySelector('.project').value;
             const projectListContainer = document.querySelector('.project-list');
             projectListContainer.insertBefore(projectListContainer.appendChild(addProject(newProjectValue)), addNewProject);
+            delAddedProjItem();
         });
+
     const newProjectValue = document.querySelector('.project')
         .addEventListener('focus', event => {
             event.target.value = '';
+        });
+};
+
+const delAddedProjItem = () => {
+    const delProjItemBtn = document.querySelector('.project-list')
+        .addEventListener('click', event => {
+            if (event.target !== event.currentTarget) {
+                const parentNode = event.target.parentNode;
+                parentNode.remove();
+            }
         });
 }
 
