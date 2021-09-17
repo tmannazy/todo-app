@@ -44,17 +44,17 @@ const sideMenu = () => {
 
 const newAddedProjectInSideMenu = () => {
     const projects = projectsArrFunc();
-    for (let i = 0; i < projects.length; i++) {
-        const newProjListItems = document.createElement('li'),
-            delProjectBtn = document.createElement('button');
+    const newProjListItem = document.createElement('li'),
+        delProjectBtn = document.createElement('button');
+    for (let i = 4; i < projects.length; i++) {
         if (i >= 5) {
-            newProjListItems.textContent = projects[i];
-            newProjListItems.setAttribute('class', projects[i]);
-            delProjectBtn.textContent = 'Del'
-            newProjListItems.appendChild(delProjectBtn);
+            newProjListItem.textContent = projects[i];
+            newProjListItem.setAttribute('class', projects[i]);
+            delProjectBtn.textContent = 'Del';
+            newProjListItem.appendChild(delProjectBtn);
         }
-        return newProjListItems;
     }
+    return newProjListItem;
 }
 
 export { sideMenu, newAddedProjectInSideMenu };
