@@ -122,7 +122,9 @@ const displayNewProjectItem = () => {
 const delAddedProjItem = () => {
     const delProjItemBtn = document.querySelector('.project-list')
         .addEventListener('click', event => {
-            if (event.target.className === 'del-project' && event.target !== event.currentTarget && event.target !== addNewProject) {
+            if (event.target.className === 'del-project' &&
+                event.target !== event.currentTarget &&
+                event.target !== addNewProject) {
                 const parentNode = event.target.parentNode;
                 parentNode.remove();
                 event.stopPropagation();
