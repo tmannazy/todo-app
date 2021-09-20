@@ -120,16 +120,19 @@ const displayNewProjectItem = () => {
 };
 
 const delAddedProjItem = () => {
-    const delProjItemBtn = document.querySelector('.project-list')
-        .addEventListener('click', event => {
-            if (event.target.className === 'del-project' &&
-                event.target !== event.currentTarget &&
-                event.target !== addNewProject) {
-                const parentNode = event.target.parentNode;
-                parentNode.remove();
-                event.stopPropagation();
-            }
-        });
+    const delProjItemBtn = document.querySelector('.project-list');
+    delProjItemBtn.addEventListener('click', event => {
+        const children = Array.from(delProjItemBtn.childNodes);
+        if (event.target.className === 'del-project' &&
+            event.target !== event.currentTarget &&
+            event.target !== addNewProject) {
+            const parentNode = event.target.parentNode;
+            const index = children.indexOf(parentNode);
+            parentNode.remove();
+            console.log(index);
+            // break;
+        } event.stopPropagation();
+    });
 }
 
 const closeNewProject = () => {
