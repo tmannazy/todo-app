@@ -120,18 +120,14 @@ const displayNewProjectItem = () => {
 };
 
 const delAddedProjItem = () => {
-    const delProjItemBtn = document.querySelector('.project-list');
-    let children = delProjItemBtn.children;
-    for (let i = 4; i < children.length; i++) {
-        delProjItemBtn.addEventListener('click', event => {
-            // if (children[i] > children[4]) {
-            if (event.target[i] !== event.currentTarget && event.target[i] !== addNewProject) {
+    const delProjItemBtn = document.querySelector('.project-list')
+        .addEventListener('click', event => {
+            if (event.target.className === 'del-project' && event.target !== event.currentTarget && event.target !== addNewProject) {
                 const parentNode = event.target.parentNode;
                 parentNode.remove();
-            } event.stopPropagation();
+                event.stopPropagation();
+            }
         });
-        // }
-    }
 }
 
 const closeNewProject = () => {
