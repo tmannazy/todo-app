@@ -27,16 +27,17 @@ const createNewProjInput = () => {
     const div = document.createElement('div'),
         newProjInput = document.createElement('input'),
         submitNewProj = document.createElement('button'),
-        closeNewProjInput = document.createElement('button');
+        closeNewProjBtn = document.createElement('button');
 
-    div.setAttribute('class', 'new-proj-container');
+    div.setAttribute('class', 'submit-new-proj-container');
     newProjInput.setAttribute('type', 'text');
     newProjInput.setAttribute('class', 'project');
     submitNewProj.setAttribute('type', 'submit');
     submitNewProj.setAttribute('class', 'submit-new-proj');
+    closeNewProjBtn.setAttribute('class', 'close-new-project-btn');
     submitNewProj.textContent = 'Save Project';
-    closeNewProjInput.textContent = 'Close';
-    div.append(newProjInput, submitNewProj, closeNewProjInput);
+    closeNewProjBtn.textContent = 'Close';
+    div.append(newProjInput, submitNewProj, closeNewProjBtn);
     return div;
 }
 
@@ -48,9 +49,5 @@ const delProject = removeProject => {
     // Remove the project from the array
 }
 
-const projectsArrFunc = () => {
-    return projectsArr;
-}
 
-
-export { showProjects, addProject, delProject, createNewProjInput, projectsArrFunc };
+export { showProjects, addProject, delProject, createNewProjInput, projectsArr };
