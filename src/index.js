@@ -96,7 +96,6 @@ const newProjectActions = () => {
     nav.append(createNewProjInput());
     displayNewProjectItem();
     closeNewProject();
-    // delAddedProjItem();
 
     const submitNewProjContainer = document.querySelector('.submit-new-proj-container');
     if (pageContent.contains(submitNewProjContainer)) {
@@ -110,7 +109,6 @@ const displayNewProjectItem = () => {
             const newProjectValue = document.querySelector('.project').value;
             const projectListContainer = document.querySelector('.project-list');
             projectListContainer.insertBefore(projectListContainer.appendChild(addProject(newProjectValue)), addNewProject);
-            delAddedProjItem();
         });
 
     const newProjectValue = document.querySelector('.project')
@@ -121,8 +119,8 @@ const displayNewProjectItem = () => {
 
 const delAddedProjItem = () => {
     const delProjItemBtn = document.querySelector('.project-list');
-    const children = Array.from(delProjItemBtn.childNodes);
     delProjItemBtn.addEventListener('click', event => {
+        const children = Array.from(delProjItemBtn.childNodes);
         const parentNode = event.target.parentNode;
         const index = children.indexOf(parentNode);
         if (event.target.matches('.del-project') &&
@@ -132,7 +130,6 @@ const delAddedProjItem = () => {
         }
         if (index > 4)
             delProject(index);
-        console.log(index);
     });
 }
 
@@ -145,6 +142,8 @@ const closeNewProject = () => {
 }
 
 addNewProject.addEventListener('click', newProjectActions);
+delAddedProjItem();
+
 
 
 
