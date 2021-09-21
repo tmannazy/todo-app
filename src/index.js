@@ -4,7 +4,7 @@ import { pageHeader } from "./header";
 import { footer } from "./footer";
 import { displayTodos, completedTodo } from "./displayTodos";
 import { sideMenu } from "./sideMenu";
-import { addProject, createNewProjInput } from "./project";
+import { addProject, createNewProjInput, delProject } from "./project";
 import { TodoFunc, myTodo } from "./todoItemsObj";
 
 
@@ -121,17 +121,18 @@ const displayNewProjectItem = () => {
 
 const delAddedProjItem = () => {
     const delProjItemBtn = document.querySelector('.project-list');
+    const children = Array.from(delProjItemBtn.childNodes);
     delProjItemBtn.addEventListener('click', event => {
-        const children = Array.from(delProjItemBtn.childNodes);
-        if (event.target.className === 'del-project' &&
+        const parentNode = event.target.parentNode;
+        const index = children.indexOf(parentNode);
+        if (event.target.matches('.del-project') &&
             event.target !== event.currentTarget &&
             event.target !== addNewProject) {
-            const parentNode = event.target.parentNode;
-            const index = children.indexOf(parentNode);
             parentNode.remove();
-            console.log(index);
-            // break;
-        } event.stopPropagation();
+        }
+        if (index > 4)
+            delProject(index);
+        console.log(index);
     });
 }
 
