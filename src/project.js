@@ -1,10 +1,10 @@
-import { newAddedProjectInSideMenu } from "./sideMenu";
+import { newlyAddedProjectItemInSideMenu } from "./sideMenu";
 
-const projectsArr = ['home', 'office', 'coding', 'workout', 'fun'];
+const projectsList = ['home', 'office', 'coding', 'workout', 'fun'];
 
 const showProjects = () => {
     const projectSelect = document.createElement('select');
-    const buildProjectArr = projectsArr.forEach(projectName => {
+    const buildProjectArr = projectsList.forEach(projectName => {
         const projectOption = document.createElement('option');
         const charRem = projectName.substr(1);
 
@@ -18,36 +18,39 @@ const showProjects = () => {
     return projectSelect;
 }
 
-const addProject = newProject => {
-    projectsArr.push(newProject);
-    return newAddedProjectInSideMenu();
+const addNewProjectItem = newItem => {
+    projectsList.push(newItem);
+    return newlyAddedProjectItemInSideMenu();
 }
 
-const createNewProjInput = () => {
+const createNewProjectInput = () => {
     const div = document.createElement('div'),
         newProjInput = document.createElement('input'),
-        submitNewProj = document.createElement('button'),
-        closeNewProjBtn = document.createElement('button');
+        submitNewProject = document.createElement('button'),
+        closeNewProjectBtn = document.createElement('button');
 
     div.setAttribute('class', 'submit-new-proj-container');
     newProjInput.setAttribute('type', 'text');
     newProjInput.setAttribute('class', 'project');
-    submitNewProj.setAttribute('type', 'submit');
-    submitNewProj.setAttribute('class', 'submit-new-proj');
-    closeNewProjBtn.setAttribute('class', 'close-new-project-btn');
-    submitNewProj.textContent = 'Save Project';
-    closeNewProjBtn.textContent = 'Close';
-    div.append(newProjInput, submitNewProj, closeNewProjBtn);
+    submitNewProject.setAttribute('type', 'submit');
+    submitNewProject.setAttribute('class', 'submit-new-proj');
+    closeNewProjectBtn.setAttribute('class', 'close-new-project-btn');
+    submitNewProject.textContent = 'Save Project';
+    closeNewProjectBtn.textContent = 'Close';
+    div.append(newProjInput, submitNewProject, closeNewProjectBtn);
     return div;
 }
 
-const delProject = removeProject => {
+const deleteProjectItem = removeItem => {
     // Click on the project to remove
     // Get the index of the project clicked
-    // Go through the array of projectsArr
+    // Go through the array of projectsList
     // Check for the index of the project clicked by user
     // Remove the project from the array
+
+    const projectItemToRemove = projectsList.splice(removeItem, 1);
+    return projectItemToRemove;
 }
 
 
-export { showProjects, addProject, delProject, createNewProjInput, projectsArr };
+export { showProjects, addNewProjectItem, deleteProjectItem, createNewProjectInput, projectsList };

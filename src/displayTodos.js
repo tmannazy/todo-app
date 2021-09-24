@@ -1,4 +1,4 @@
-import { myTodo } from "./todoItemsObj";
+import { myTodoList } from "./todoItemsObj";
 
 const uniqueID = () => {
     const checkLen = 20;
@@ -10,7 +10,7 @@ const uniqueID = () => {
     return taskID
 }
 
-const displayTodos = todoArr => {
+const displayTodos = todoList => {
     const taskContainer = document.createElement('div');
     taskContainer.setAttribute('class', 'task-container');
     taskContainer.setAttribute('id', uniqueID());
@@ -63,12 +63,12 @@ const displayTodos = todoArr => {
             taskContainer.append(checkboxContainer, taskItemLabel, taskItem, btnn);
         }
     }
-    if (todoArr === undefined) {
-        myTodo.forEach(todo => {
+    if (todoList === undefined) {
+        myTodoList.forEach(todo => {
             createTodoItems(todo);
         })
-    } else if (todoArr) {
-        const showMyTodo = todoArr;
+    } else if (todoList) {
+        const showMyTodo = todoList;
         showMyTodo.slice(-1).forEach(todo => {
             createTodoItems(todo)
         })
@@ -79,9 +79,9 @@ const displayTodos = todoArr => {
 
 
 const completedTodo = todoIndex => {
-    console.log(myTodo.at(todoIndex))
-    console.log(myTodo.length)
-    myTodo.splice(todoIndex, 1);
+    console.log(myTodoList.at(todoIndex))
+    console.log(myTodoList.length)
+    myTodoList.splice(todoIndex, 1);
 
     console.log('Yeah! It is deleted' + ' ' + 'index:', todoIndex);
 

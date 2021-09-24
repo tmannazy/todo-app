@@ -1,4 +1,4 @@
-import { projectsArrFunc } from "./project";
+import { projectsList } from "./project";
 
 const menuItems = ['home', 'today', 'week', 'project'],
     nav = document.createElement('nav'),
@@ -13,7 +13,7 @@ const sideMenu = () => {
             const span = document.createElement('span'),
                 projUnorderedList = document.createElement('ul'),
                 button = document.createElement('button'),
-                projects = projectsArrFunc();
+                projects = projectsList;
             projUnorderedList.setAttribute('class', 'project-list');
 
             span.textContent = element;
@@ -42,14 +42,15 @@ const sideMenu = () => {
     return nav;
 }
 
-const newAddedProjectInSideMenu = () => {
-    const projects = projectsArrFunc();
+const newlyAddedProjectItemInSideMenu = () => {
+    const projects = projectsList;
     const newProjListItem = document.createElement('li'),
         delProjectBtn = document.createElement('button');
     for (let i = 4; i < projects.length; i++) {
         if (i >= 5) {
-            newProjListItem.textContent = projects[i];
             newProjListItem.setAttribute('class', projects[i]);
+            delProjectBtn.setAttribute('class', 'del-project');
+            newProjListItem.textContent = projects[i];
             delProjectBtn.textContent = 'Del';
             newProjListItem.appendChild(delProjectBtn);
         }
@@ -57,4 +58,4 @@ const newAddedProjectInSideMenu = () => {
     return newProjListItem;
 }
 
-export { sideMenu, newAddedProjectInSideMenu };
+export { sideMenu, newlyAddedProjectItemInSideMenu };

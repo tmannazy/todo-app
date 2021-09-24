@@ -4,8 +4,8 @@ import { pageHeader } from "./header";
 import { footer } from "./footer";
 import { displayTodos, completedTodo } from "./displayTodos";
 import { sideMenu } from "./sideMenu";
-import { addProject, createNewProjInput, delProject } from "./project";
-import { TodoFunc, myTodo } from "./todoItemsObj";
+import { addNewProjectItem, createNewProjectInput, deleteProjectItem } from "./project";
+import { TodoFactoryFunction, myTodoList } from "./todoItemsObj";
 
 
 // cacheDOM
@@ -62,8 +62,9 @@ const save = () => {
         const priority = document.getElementById('priority').value;
         const date = document.getElementById('date').value;
         const project = document.getElementById('project').value;
-        const genFormObjects = myTodo.push(TodoFunc(title, description, notes, priority, date, project));
-        todosContainerDisplay.appendChild(displayTodos(myTodo));
+        const userTodoEntries = TodoFactoryFunction(title, description, notes, priority, date, project);
+        const genFormObjects = myTodoList.push(userTodoEntries);
+        todosContainerDisplay.appendChild(displayTodos(myTodoList));
     });
 }
 
@@ -76,7 +77,7 @@ getTodoContainer.addEventListener('click', event => {
     if (event.target !== event.currentTarget && event.target.className === 'task-checkbox') {
         const taskCheckContainer = event.target.parentNode.parentNode;
         const todoContainerChildElements = Array.from(event.currentTarget.children);
-        const todoIndexToRemove = todoContainerChildElements.indexOf(event.target.parentNode.parentNode);
+        const todoIndexToRemove = todoContainerChildElements.indexOf(taskCheckContainer);
         taskCheckContainer.remove()
         completedTodo(todoIndexToRemove);
     }
@@ -93,7 +94,7 @@ homeBtn.addEventListener('click', () => {
 
 
 const newProjectActions = () => {
-    nav.append(createNewProjInput());
+    nav.append(createNewProjectInput());
     displayNewProjectItem();
     closeNewProject();
 
@@ -108,7 +109,7 @@ const displayNewProjectItem = () => {
         .addEventListener('click', () => {
             const newProjectValue = document.querySelector('.project').value;
             const projectListContainer = document.querySelector('.project-list');
-            projectListContainer.insertBefore(projectListContainer.appendChild(addProject(newProjectValue)), addNewProject);
+            projectListContainer.insertBefore(projectListContainer.appendChild(addNewProjectItem(newProjectValue)), addNewProject);
         });
 
     const newProjectValue = document.querySelector('.project')
@@ -129,7 +130,7 @@ const delAddedProjItem = () => {
             parentNode.remove();
         }
         if (index > 4)
-            delProject(index);
+            deleteProjectItem(index);
     });
 }
 
@@ -141,8 +142,8 @@ const closeNewProject = () => {
         });
 }
 
-addNewProject.addEventListener('click', newProjectActions);
 delAddedProjItem();
+addNewProject.addEventListener('click', newProjectActions);
 
 
 
