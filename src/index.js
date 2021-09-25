@@ -5,7 +5,7 @@ import { footer } from "./footer";
 import { displayTodos, completedTodo } from "./displayTodos";
 import { sideMenu } from "./sideMenu";
 import { addNewProjectItem, createNewProjectInput, deleteProjectItem } from "./project";
-import { TodoFactoryFunction, myTodoList } from "./todoItemsObj";
+import { getTodosByProjectName, TodoFactoryFunction, myTodoList } from "./todoItemsObj";
 
 
 // cacheDOM
@@ -146,10 +146,23 @@ delAddedProjItem();
 addNewProject.addEventListener('click', newProjectActions);
 
 
+/**************************/
+// Display Todos //
+// by Project Name //
+/**************************/
+
+const displayTodosInNamedProject = () => {
+    const todoProjectContainer = document.querySelector('.project-list');
+    todoProjectContainer.addEventListener('click', e => {
+        if (e.target !== e.currentTarget &&
+            e.target.className === e.target.textContent.toLowerCase()) {
+            getTodosByProjectName(e.target);
+        }
+    })
+}
 
 
-
-
+displayTodosInNamedProject();
 
 // body.insertBefore(pageHeader(), pageContent);
 // const date = format(new Date(2021, 08, 19), 'dd/MM/yyyy');
