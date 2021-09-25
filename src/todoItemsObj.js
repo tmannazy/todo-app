@@ -13,4 +13,14 @@ const myTodoList = [{
     project: 'Coding'
 }]
 
-export { myTodoList, TodoFactoryFunction };
+
+const getTodosByProjectName = projectName => {
+    const loopTodoList = myTodoList.forEach(todoItem => {
+        for (let prop in todoItem) {
+            if (todoItem[prop] === projectName) {
+                console.log(`${todoItem[prop]}, ${prop}`);
+            }
+        }
+    })
+}
+export { myTodoList, TodoFactoryFunction, getTodosByProjectName };
