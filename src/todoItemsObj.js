@@ -15,12 +15,20 @@ const myTodoList = [{
 
 
 const getTodosByProjectName = projectName => {
-    const loopTodoList = myTodoList.forEach(todoItem => {
-        for (let prop in todoItem) {
-            if (todoItem[prop] === projectName) {
-                console.log(`${todoItem[prop]}, ${prop}`);
+    const loopTodoList = myTodoList.filter(todoItem => {
+        // for (let prop in todoItem) {
+        // if (todoItem.project.toLowerCase() === projectName) {
+        //     console.log(`${todoItem.project}, ${projectName}`);
+        //     // console.log(`${todoItem[prop]}, ${prop}`);
+        // }
+        // }
+
+        const checkProjectName = Object.values(todoItem).forEach(item => {
+            if (item == projectName) {
+                console.log(item);
             }
-        }
-    })
+        })
+
+    });
 }
 export { myTodoList, TodoFactoryFunction, getTodosByProjectName };
