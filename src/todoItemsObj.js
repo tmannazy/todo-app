@@ -1,3 +1,7 @@
+import { format, startOfWeek } from 'date-fns';
+import locale from 'date-fns/locale/en-GB';
+
+
 const TodoFactoryFunction = (title, description, notes, priority, date, project) => {
     return {
         title, description, notes, priority, date, project
@@ -9,7 +13,7 @@ const myTodoList = [{
     description: 'Keep the Acronyms in mind - \'ABL, ABB, CCC\' in mind daily to draw inspiration',
     notes: 'ABL stands for Always Be Learning. ABB stands for Always Be Building. CCC stands for Code Code Code. These acronyms were invented by Danny Thompson as one of the major attributes to become a better to be a programmer',
     priority: 'High',
-    date: new Date(),
+    date: format(new Date(), 'MM/dd/yyyy', { weekStartsOn: 5, locale }),
     project: 'Coding'
 }]
 
@@ -24,8 +28,9 @@ const getTodosByProjectName = projectName => {
         // }
 
         const checkProjectName = Object.values(todoItem).forEach(item => {
-            if (item == projectName) {
-                console.log(item);
+            const smallCase = item.toLowerCase();
+            if (smallCase === projectName) {
+                console.log(todoItem);
             }
         })
 
