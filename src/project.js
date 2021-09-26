@@ -31,7 +31,7 @@ const createNewProjectInput = () => {
 
     div.setAttribute('class', 'submit-new-proj-container');
     newProjInput.setAttribute('type', 'text');
-    newProjInput.setAttribute('class', 'project');
+    newProjInput.setAttribute('class', 'project-input');
     submitNewProject.setAttribute('type', 'submit');
     submitNewProject.setAttribute('class', 'submit-new-proj');
     closeNewProjectBtn.setAttribute('class', 'close-new-project-btn');
@@ -42,12 +42,6 @@ const createNewProjectInput = () => {
 }
 
 const deleteProjectItem = removeItem => {
-    // Click on the project to remove
-    // Get the index of the project clicked
-    // Go through the array of projectsList
-    // Check for the index of the project clicked by user
-    // Remove the project from the array
-
     const projectItemToRemove = projectsList.splice(removeItem, 1);
     return projectItemToRemove;
 }
