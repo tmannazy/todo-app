@@ -64,7 +64,7 @@ const save = () => {
         const project = document.getElementById('project').value;
         const userTodoEntries = TodoFactoryFunction(title, description, notes, priority, date, project);
         const genFormObjects = myTodoList.push(userTodoEntries);
-        todosContainerDisplay.appendChild(displayTodos(myTodoList));
+        todosContainerDisplay.appendChild(displayTodos(genFormObjects));
     });
 }
 
@@ -107,12 +107,12 @@ const newProjectActions = () => {
 const displayNewProjectItem = () => {
     const getInputValue = document.querySelector('.submit-new-proj')
         .addEventListener('click', () => {
-            const newProjectValue = document.querySelector('.project').value;
+            const newProjectValue = document.querySelector('.project-input').value;
             const projectListContainer = document.querySelector('.project-list');
             projectListContainer.insertBefore(projectListContainer.appendChild(addNewProjectItem(newProjectValue)), addNewProject);
         });
 
-    const newProjectValue = document.querySelector('.project')
+    const newProjectValue = document.querySelector('.project-input')
         .addEventListener('focus', event => {
             event.target.value = '';
         });
@@ -156,7 +156,7 @@ const displayTodosInNamedProject = () => {
     todoProjectContainer.addEventListener('click', e => {
         if (e.target !== e.currentTarget &&
             e.target.className === e.target.textContent.toLowerCase()) {
-            getTodosByProjectName(e.target);
+            getTodosByProjectName(e.target.textContent.toLowerCase());
         }
     })
 }
