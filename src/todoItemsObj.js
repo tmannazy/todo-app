@@ -1,4 +1,4 @@
-import { format, startOfWeek } from 'date-fns';
+import { format, startOfWeek, parseISO, parse } from 'date-fns';
 import locale from 'date-fns/locale/en-GB';
 
 
@@ -20,13 +20,6 @@ const myTodoList = [{
 
 const getTodosByProjectName = projectName => {
     const loopTodoList = myTodoList.filter(todoItem => {
-        // for (let prop in todoItem) {
-        // if (todoItem.project.toLowerCase() === projectName) {
-        //     console.log(`${todoItem.project}, ${projectName}`);
-        //     // console.log(`${todoItem[prop]}, ${prop}`);
-        // }
-        // }
-
         const checkProjectName = Object.values(todoItem).forEach(item => {
             const smallCase = item.toLowerCase();
             if (smallCase === projectName) {
