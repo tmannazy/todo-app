@@ -13,7 +13,7 @@ const myTodoList = [{
     description: 'Keep the Acronyms in mind - \'ABL, ABB, CCC\' in mind daily to draw inspiration',
     notes: 'ABL stands for Always Be Learning. ABB stands for Always Be Building. CCC stands for Code Code Code. These acronyms were invented by Danny Thompson as one of the major attributes to become a better to be a programmer',
     priority: 'High',
-    date: startOfWeek(new Date(), { weekStartsOn: 5, locale }),
+    date: format(new Date(), 'dd.MM.yyyy'),
     project: 'Coding'
 }]
 
