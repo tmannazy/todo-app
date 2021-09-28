@@ -64,7 +64,7 @@ const save = () => {
         const project = document.getElementById('project').value;
         const userTodoEntries = TodoFactoryFunction(title, description, notes, priority, date, project);
         const genFormObjects = myTodoList.push(userTodoEntries);
-        todosContainerDisplay.appendChild(displayTodos(genFormObjects));
+        todosContainerDisplay.appendChild(displayTodos(myTodoList));
     });
 }
 
@@ -118,6 +118,14 @@ const displayNewProjectItem = () => {
         });
 };
 
+const closeNewProject = () => {
+    const closeNewProjectBtn = document.querySelector('.close-new-project-btn')
+        .addEventListener('click', () => {
+            document.querySelector('.submit-new-proj-container').remove();
+            addNewProject.addEventListener('click', newProjectActions);
+        });
+}
+
 const delAddedProjItem = () => {
     const delProjItemBtn = document.querySelector('.project-list');
     delProjItemBtn.addEventListener('click', event => {
@@ -134,14 +142,6 @@ const delAddedProjItem = () => {
     });
 }
 
-const closeNewProject = () => {
-    const closeNewProjectBtn = document.querySelector('.close-new-project-btn')
-        .addEventListener('click', () => {
-            document.querySelector('.submit-new-proj-container').remove();
-            addNewProject.addEventListener('click', newProjectActions);
-        });
-}
-
 delAddedProjItem();
 addNewProject.addEventListener('click', newProjectActions);
 
@@ -151,7 +151,7 @@ addNewProject.addEventListener('click', newProjectActions);
 // by Project Name //
 /**************************/
 
-const displayTodosInNamedProject = () => {
+const displayTodosInSelectedProject = () => {
     const todoProjectContainer = document.querySelector('.project-list');
     todoProjectContainer.addEventListener('click', e => {
         if (e.target !== e.currentTarget &&
@@ -162,7 +162,7 @@ const displayTodosInNamedProject = () => {
 }
 
 
-displayTodosInNamedProject();
+displayTodosInSelectedProject();
 
 // body.insertBefore(pageHeader(), pageContent);
 // const date = format(new Date(2021, 08, 19), 'dd/MM/yyyy');
