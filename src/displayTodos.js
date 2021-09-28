@@ -1,6 +1,10 @@
 import { myTodoList } from "./todoItemsObj";
 
-const uniqueID = () => {
+const taskContainer = document.createElement('div');
+taskContainer.setAttribute('class', 'task-container');
+taskContainer.setAttribute('id', uniqueID());
+
+function uniqueID() {
     const checkLen = 20;
     let taskID = (Math.floor((Math.random() * 25)) + 10).toString(36) + '_';
     do {
@@ -11,11 +15,22 @@ const uniqueID = () => {
 }
 
 const displayTodos = todoList => {
-    const taskContainer = document.createElement('div');
-    taskContainer.setAttribute('class', 'task-container');
-    taskContainer.setAttribute('id', uniqueID());
+    if (todoList === undefined) {
+        myTodoList.forEach(todo => {
+            createTodoItems(todo);
+        })
+    }
+    else if (Array.isArray(todoList)) {
+        const showMyTodo = todoList;
+        showMyTodo.slice(-1).forEach(todo => {
+            createTodoItems(todo)
+        })
+    }
+    else if (typeof todoList === 'object') {
+        createTodoItems(todoList);
+    }
 
-    const createTodoItems = todo => {
+    function createTodoItems(todo) {
         const checkboxContainer = document.createElement('div');
         const taskCheckbox = document.createElement('input');
         const btnn = document.createElement('button');
@@ -63,29 +78,26 @@ const displayTodos = todoList => {
             taskContainer.append(checkboxContainer, taskItemLabel, taskItem, btnn);
         }
     }
-    if (todoList === undefined) {
-        myTodoList.forEach(todo => {
-            createTodoItems(todo);
-        })
-    } else if (todoList) {
-        const showMyTodo = todoList;
-        showMyTodo.slice(-1).forEach(todo => {
-            createTodoItems(todo)
-        })
-    }
 
     return taskContainer;
 }
 
 
 const completedTodo = todoIndex => {
-    console.log(myTodoList.at(todoIndex))
-    console.log(myTodoList.length)
     myTodoList.splice(todoIndex, 1);
-
-    console.log('Yeah! It is deleted' + ' ' + 'index:', todoIndex);
-
 }
 
-
-export { displayTodos, completedTodo };
+const getTodosByProjectName = projectName => {
+    let saveAllTodos;
+    const loopTodoList = myTodoList.filter(todoItem => {
+        const checkProjectName = Object.values(todoItem).forEach(item => {
+            const smallCase = item.toLowerCase();
+            if (smallCase === projectName) {
+                return true;
+            }
+        });
+        saveAllTodos = displayTodos(todoItem);
+    });
+    return saveAllTodos;
+}
+export { displayTodos, completedTodo, getTodosByProjectName };
