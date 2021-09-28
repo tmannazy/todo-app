@@ -1,5 +1,5 @@
-import { format, startOfWeek, parseISO, parse } from 'date-fns';
-import locale from 'date-fns/locale/en-GB';
+import { format, startOfWeek, parseISO } from 'date-fns';
+import { displayTodos } from './displayTodos';
 
 
 const TodoFactoryFunction = (title, description, notes, priority, date, project) => {
@@ -22,11 +22,11 @@ const getTodosByProjectName = projectName => {
     const loopTodoList = myTodoList.filter(todoItem => {
         const checkProjectName = Object.values(todoItem).forEach(item => {
             const smallCase = item.toLowerCase();
+            const div = document.createElement('div');
             if (smallCase === projectName) {
-                console.log(todoItem);
+                div.appendChild(displayTodos(todoItem));
             }
-        })
-
+        });
     });
 }
 export { myTodoList, TodoFactoryFunction, getTodosByProjectName };
