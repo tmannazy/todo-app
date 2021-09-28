@@ -1,5 +1,5 @@
 import { form } from "./form";
-import { format } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 import { pageHeader } from "./header";
 import { footer } from "./footer";
 import { displayTodos, completedTodo } from "./displayTodos";
@@ -96,7 +96,7 @@ homeBtn.addEventListener('click', () => {
 const newProjectActions = () => {
     nav.append(createNewProjectInput());
     displayNewProjectItem();
-    closeNewProject();
+    closeNewProjectContainer();
 
     const submitNewProjContainer = document.querySelector('.submit-new-proj-container');
     if (pageContent.contains(submitNewProjContainer)) {
@@ -118,7 +118,7 @@ const displayNewProjectItem = () => {
         });
 };
 
-const closeNewProject = () => {
+const closeNewProjectContainer = () => {
     const closeNewProjectBtn = document.querySelector('.close-new-project-btn')
         .addEventListener('click', () => {
             document.querySelector('.submit-new-proj-container').remove();
@@ -156,7 +156,8 @@ const displayTodosInSelectedProject = () => {
     todoProjectContainer.addEventListener('click', e => {
         if (e.target !== e.currentTarget &&
             e.target.className === e.target.textContent.toLowerCase()) {
-            getTodosByProjectName(e.target.textContent.toLowerCase());
+            const selectedProject = e.target.textContent.toLowerCase();
+            todosContainerDisplay.appendChild(getTodosByProjectName(selectedProject));
         }
     })
 }
