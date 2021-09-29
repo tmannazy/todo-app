@@ -2,10 +2,10 @@ import { form } from "./form";
 import { format, parseISO } from 'date-fns';
 import { pageHeader } from "./header";
 import { footer } from "./footer";
-import { displayTodos, completedTodo } from "./displayTodos";
+import { displayTodos, completedTodo, getTodosByProjectName } from "./displayTodos";
 import { sideMenu } from "./sideMenu";
 import { addNewProjectItem, createNewProjectInput, deleteProjectItem } from "./project";
-import { getTodosByProjectName, TodoFactoryFunction, myTodoList } from "./todoItemsObj";
+import { TodoFactoryFunction, myTodoList } from "./todoItemsObj";
 
 
 // cacheDOM
@@ -154,12 +154,24 @@ addNewProject.addEventListener('click', newProjectActions);
 const displayTodosInSelectedProject = () => {
     const todoProjectContainer = document.querySelector('.project-list');
     todoProjectContainer.addEventListener('click', e => {
-        if (e.target !== e.currentTarget &&
-            e.target.className === e.target.textContent.toLowerCase()) {
-            const selectedProject = e.target.textContent.toLowerCase();
-            todosContainerDisplay.appendChild(getTodosByProjectName(selectedProject));
-        }
-    })
+        const selectedProject = e.target.textContent.toLowerCase();
+        const loopTodoList = myTodoList.filter(todoItem => {
+            const checkProjectName = Object.values(todoItem).forEach(item => {
+                const smallCase = item.toLowerCase();
+                if (smallCase === selectedProject) {
+                    return true;
+                }
+            });
+
+            if (!todosContainerDisplay.hasChildNodes()) {
+                todosContainerDisplay.appendChild(displayTodos(todoItem));
+            }
+            else if (todosContainerDisplay.hasChildNodes()) {
+                todosContainerDisplay.textContent = '';
+                todosContainerDisplay.appendChild(displayTodos(todoItem));
+            }
+        });
+    });
 }
 
 
