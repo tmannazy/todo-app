@@ -154,22 +154,15 @@ addNewProject.addEventListener('click', newProjectActions);
 const displayTodosInSelectedProject = () => {
     const todoProjectContainer = document.querySelector('.project-list');
     todoProjectContainer.addEventListener('click', e => {
+        todosContainerDisplay.textContent = '';
         const selectedProject = e.target.textContent.toLowerCase();
         const loopTodoList = myTodoList.filter(todoItem => {
             const checkProjectName = Object.values(todoItem).forEach(item => {
                 const smallCase = item.toLowerCase();
                 if (smallCase === selectedProject) {
-                    return true;
+                    todosContainerDisplay.appendChild(displayTodos(todoItem));
                 }
             });
-
-            if (!todosContainerDisplay.hasChildNodes()) {
-                todosContainerDisplay.appendChild(displayTodos(todoItem));
-            }
-            else if (todosContainerDisplay.hasChildNodes()) {
-                todosContainerDisplay.textContent = '';
-                todosContainerDisplay.appendChild(displayTodos(todoItem));
-            }
         });
     });
 }
