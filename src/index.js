@@ -137,7 +137,7 @@ const delAddedProjItem = () => {
             event.target !== addNewProject) {
             parentNode.remove();
         }
-        if (index > 4)
+        if (index > 3)
             deleteProjectItem(index);
     });
 }
@@ -155,11 +155,11 @@ const displayTodosInSelectedProject = () => {
     const todoProjectContainer = document.querySelector('.project-list');
     todoProjectContainer.addEventListener('click', e => {
         todosContainerDisplay.textContent = '';
-        const selectedProject = e.target.textContent.toLowerCase();
-        const loopTodoList = myTodoList.filter(todoItem => {
-            const checkProjectName = Object.values(todoItem).forEach(item => {
-                const smallCase = item.toLowerCase();
-                if (smallCase === selectedProject) {
+        const selectedProjectName = e.target.textContent.toLowerCase();
+        const loopTodoListArray = myTodoList.filter(todoItem => {
+            const checkForSelectedProjectNameValue = Object.values(todoItem).forEach(item => {
+                const valuesOfKeysInSmallCase = item.toLowerCase();
+                if (valuesOfKeysInSmallCase === selectedProjectName) {
                     todosContainerDisplay.appendChild(displayTodos(todoItem));
                 }
             });
