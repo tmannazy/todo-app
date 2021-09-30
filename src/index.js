@@ -2,7 +2,7 @@ import { form } from "./form";
 import { format, parseISO } from 'date-fns';
 import { pageHeader } from "./header";
 import { footer } from "./footer";
-import { displayTodos, completedTodo, getTodosByProjectName } from "./displayTodos";
+import { displayTodos, completedTodo } from "./displayTodos";
 import { sideMenu } from "./sideMenu";
 import { addNewProjectItem, createNewProjectInput, deleteProjectItem } from "./project";
 import { TodoFactoryFunction, myTodoList } from "./todoItemsObj";
@@ -130,7 +130,7 @@ const delAddedProjItem = () => {
     const delProjItemBtn = document.querySelector('.project-list');
     delProjItemBtn.addEventListener('click', event => {
         const children = Array.from(delProjItemBtn.childNodes);
-        const parentNode = event.target.parentNode;
+        const parentNode = event.target.parentNode.parentNode;
         const index = children.indexOf(parentNode);
         if (event.target.matches('.del-project') &&
             event.target !== event.currentTarget &&
@@ -154,17 +154,20 @@ addNewProject.addEventListener('click', newProjectActions);
 const displayTodosInSelectedProject = () => {
     const todoProjectContainer = document.querySelector('.project-list');
     todoProjectContainer.addEventListener('click', e => {
-        todosContainerDisplay.textContent = '';
-        const selectedProjectName = e.target.textContent.toLowerCase();
-        const loopTodoListArray = myTodoList.filter(todoItem => {
-            const checkForSelectedProjectNameValue = Object.values(todoItem).forEach(item => {
-                const valuesOfKeysInSmallCase = item.toLowerCase();
-                if (valuesOfKeysInSmallCase === selectedProjectName) {
-                    todosContainerDisplay.appendChild(displayTodos(todoItem));
-                }
+        if (e.target !== addNewProject && !e.target.matches('.del-project')) {
+            todosContainerDisplay.textContent = '';
+            const selectedProjectName = e.target.textContent.toLowerCase();
+            const loopTodoListArray = myTodoList.filter(todoItem => {
+                const checkForSelectedProjectNameValue = Object.values(todoItem).forEach(item => {
+                    const valuesOfKeysInSmallCase = item.toLowerCase();
+                    if (valuesOfKeysInSmallCase === selectedProjectName) {
+                        todosContainerDisplay.appendChild(displayTodos(todoItem));
+                    }
+                });
             });
-        });
+        }
     });
+
 }
 
 
