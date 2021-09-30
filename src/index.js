@@ -153,6 +153,9 @@ addNewProject.addEventListener('click', newProjectActions);
 
 const displayTodosInSelectedProject = () => {
     const todoProjectContainer = document.querySelector('.project-list');
+    const containerForEmptyProject = document.createElement('div');
+    containerForEmptyProject.setAttribute('class', 'empty-project');
+    containerForEmptyProject.textContent = 'There are no todo items for this project.'
     todoProjectContainer.addEventListener('click', e => {
         if (e.target !== addNewProject && !e.target.matches('.del-project')) {
             todosContainerDisplay.textContent = '';
@@ -162,6 +165,9 @@ const displayTodosInSelectedProject = () => {
                     const valuesOfKeysInSmallCase = item.toLowerCase();
                     if (valuesOfKeysInSmallCase === selectedProjectName) {
                         todosContainerDisplay.appendChild(displayTodos(todoItem));
+                    }
+                    else {
+                        todosContainerDisplay.appendChild(containerForEmptyProject);
                     }
                 });
             });
