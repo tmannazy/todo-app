@@ -48,14 +48,17 @@ const sideMenu = () => {
 const newlyAddedProjectItemInSideMenu = () => {
     const projects = projectsList;
     const newProjListItem = document.createElement('li'),
-        delProjectBtn = document.createElement('button');
-    for (let i = 4; i < projects.length; i++) {
-        if (i >= 5) {
+        delProjectBtn = document.createElement('button'),
+        delBtnContainer = document.createElement('div');
+    for (let i = 3; i < projects.length; i++) {
+        if (i >= 4) {
             newProjListItem.setAttribute('class', projects[i]);
             delProjectBtn.setAttribute('class', 'del-project');
+            delBtnContainer.setAttribute('class', 'del-project-container');
             newProjListItem.textContent = projects[i];
             delProjectBtn.textContent = 'Del';
-            newProjListItem.appendChild(delProjectBtn);
+            delBtnDiv.appendChild(delProjectBtn)
+            newProjListItem.appendChild(delBtnContainer);
         }
     }
     return newProjListItem;
