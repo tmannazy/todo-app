@@ -1,8 +1,7 @@
 import { myTodoList } from "./todoItemsObj";
+import { format, parseISO } from 'date-fns';
 
-const taskContainer = document.createElement('div');
-taskContainer.setAttribute('class', 'task-container');
-taskContainer.setAttribute('id', uniqueID());
+
 
 function uniqueID() {
     const checkLen = 20;
@@ -15,16 +14,20 @@ function uniqueID() {
 }
 
 const displayTodos = todoList => {
+    const taskContainer = document.createElement('div');
+    taskContainer.setAttribute('class', 'task-container');
+    taskContainer.setAttribute('id', uniqueID());
+
     if (todoList === undefined) {
         myTodoList.forEach(todo => {
             createTodoItems(todo);
-        })
+        });
     }
     else if (Array.isArray(todoList)) {
         const showMyTodo = todoList;
         showMyTodo.slice(-1).forEach(todo => {
             createTodoItems(todo)
-        })
+        });
     }
     else if (typeof todoList === 'object') {
         createTodoItems(todoList);
@@ -58,18 +61,20 @@ const displayTodos = todoList => {
                     taskItem.setAttribute('class', `task-${showTodo}`);
                     taskItem.textContent = `${todo[showTodo]}`;
                     taskItemLabel.textContent = showTodo;
+                    break;
                 case 'priority':
                     taskItem.setAttribute('class', `task-${showTodo}`);
                     taskItem.textContent = `${todo[showTodo]}`;
                     taskItemLabel.textContent = showTodo;
+                    break;
                 case 'date':
                     taskItem.setAttribute('class', `task-${showTodo}`);
-                    taskItem.textContent = `${todo[showTodo]}`;
+                    taskItem.textContent = `${format(new Date(todo[showTodo]), 'dd.MM.yyyy')}`;
                     taskItemLabel.textContent = showTodo;
                     break;
                 case 'project':
-                    taskItem.setAttribute('class', `task-${showTodo}`);
-                    taskItem.textContent = `${todo[showTodo]}`;
+                    taskItem.setAttribute('class', `task - ${showTodo} `);
+                    taskItem.textContent = `${todo[showTodo]} `;
                     taskItemLabel.textContent = showTodo;
                     break;
                 default:
@@ -87,17 +92,5 @@ const completedTodo = todoIndex => {
     myTodoList.splice(todoIndex, 1);
 }
 
-const getTodosByProjectName = projectName => {
-    let saveAllTodos;
-    const loopTodoList = myTodoList.filter(todoItem => {
-        const checkProjectName = Object.values(todoItem).forEach(item => {
-            const smallCase = item.toLowerCase();
-            if (smallCase === projectName) {
-                return true;
-            }
-        });
-        saveAllTodos = displayTodos(todoItem);
-    });
-    return saveAllTodos;
-}
-export { displayTodos, completedTodo, getTodosByProjectName };
+
+export { displayTodos, completedTodo };
