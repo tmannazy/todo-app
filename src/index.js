@@ -1,11 +1,10 @@
-import { form } from "./form";
-import { format, parseISO } from 'date-fns';
-import { pageHeader } from "./header";
+import { completedTodo, displayTodos } from "./displayTodos";
 import { footer } from "./footer";
-import { displayTodos, completedTodo } from "./displayTodos";
-import { sideMenu } from "./sideMenu";
+import { form } from "./form";
+import { pageHeader } from "./header";
 import { addNewProjectItem, createNewProjectInput, deleteProjectItem } from "./project";
-import { TodoFactoryFunction, myTodoList } from "./todoItemsObj";
+import { sideMenu } from "./sideMenu";
+import { myTodoList, TodoFactoryFunction } from "./todoItemsObj";
 
 
 // cacheDOM
@@ -153,9 +152,9 @@ addNewProject.addEventListener('click', newProjectActions);
 
 const displayTodosInSelectedProject = () => {
     const todoProjectContainer = document.querySelector('.project-list');
-    const containerForEmptyProject = document.createElement('div');
-    containerForEmptyProject.setAttribute('class', 'empty-project');
-    containerForEmptyProject.textContent = 'There are no todo items for this project.'
+    const emptyProjectContainer = document.createElement('div');
+    emptyProjectContainer.setAttribute('class', 'empty-project');
+    emptyProjectContainer.textContent = 'There are no todo items for this project.'
     todoProjectContainer.addEventListener('click', e => {
         if (e.target !== addNewProject && !e.target.matches('.del-project')) {
             todosContainerDisplay.textContent = '';
@@ -167,7 +166,7 @@ const displayTodosInSelectedProject = () => {
                         todosContainerDisplay.appendChild(displayTodos(todoItem));
                     }
                     else {
-                        todosContainerDisplay.appendChild(containerForEmptyProject);
+                        todosContainerDisplay.appendChild(emptyProjectContainer);
                     }
                 });
             });
@@ -178,6 +177,9 @@ const displayTodosInSelectedProject = () => {
 
 
 displayTodosInSelectedProject();
+
+
+
 
 // body.insertBefore(pageHeader(), pageContent);
 // const date = format(new Date(2021, 08, 19), 'dd/MM/yyyy');
