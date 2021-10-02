@@ -194,16 +194,24 @@ weekBtn.addEventListener('click', () => {
     const loopTodoListArray = myTodoList.filter(todoItem => {
         for (const [key, value] of Object.entries(todoItem)) {
             if (key === 'date') {
-                const getDateAndParseDateValue = parse(value, 'dd.MM.yyyy', new Date());
-                const checkParsedDateIsInRange = isWithinInterval(getDateAndParseDateValue, { start: firstDayInTheWeek, end: lastDayInTheWeek })
-                if (checkParsedDateIsInRange) {
-                    todosContainerDisplay.appendChild(displayTodos(todoItem));
+                if (typeof value === 'string') {
+                    const getDateAndParseDateValue = parse(value, 'dd.MM.yyyy', new Date());
+                    checkRange(getDateAndParseDateValue);
+                }
+                else if (Object.prototype.toString.call(value) === '[object Date]') {
+                    checkRange(value);
                 }
             }
         }
-    });
 
-})
+        function checkRange(dateValue) {
+            const checkParsedDateIsInRange = isWithinInterval(dateValue, { start: firstDayInTheWeek, end: lastDayInTheWeek })
+            if (checkParsedDateIsInRange) {
+                todosContainerDisplay.appendChild(displayTodos(todoItem));
+            }
+        }
+    });
+});
 // f_firstDay = _.format(new Date(firstDay), 'yyyy/dd/MM');
 // _.compareAsc(new Date(f_lastDay), new Date(firstDay))
 
