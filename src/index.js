@@ -1,3 +1,4 @@
+import { format, lastDayOfWeek, subDays, isWithinInterval } from "date-fns";
 import { completedTodo, displayTodos } from "./displayTodos";
 import { footer } from "./footer";
 import { form } from "./form";
@@ -19,6 +20,7 @@ const addBtn = document.querySelector('.add-todo');
 const addNewProject = document.querySelector('.new-project');
 const homeBtn = document.querySelector('.home');
 const nav = document.querySelector('nav');
+const weekBtn = document.querySelector('.week');
 const todosContainerDisplay = document.createElement('div');
 todosContainerDisplay.setAttribute('class', 'display-todos');
 pageContent.appendChild(todosContainerDisplay);
@@ -26,9 +28,9 @@ pageContent.appendChild(todosContainerDisplay);
 
 // bindEvents
 
-/*********************/
+/*************************/
 // NEW TODO EVENTS //
-/*********************/
+/*************************/
 
 const todoActions = () => {
     pageContent.appendChild(form());
@@ -178,6 +180,40 @@ const displayTodosInSelectedProject = () => {
 
 displayTodosInSelectedProject();
 
+
+
+/****************************/
+// Display Weekly Todos //
+/****************************/
+
+weekBtn.addEventListener('click', () => {
+    const lastDay = lastDayOfWeek(new Date());
+    const lDay = format(new Date(lastDay), 'yyyy/MM/dd');
+    const firstDay = subDays(new Date(lDay), 6);
+    todosContainerDisplay.textContent = '';
+    const loopTodoListArray = myTodoList.filter(todoItem => {
+        for (const [key, value] of Object.entries(todoItem)) {
+            if (key === 'date') {
+                const getDateAndParseDateValue = parse(value, 'yyyy.dd.MM', new Date());
+                const checkParsedDateIsInRange = isWithinInterval(getDateAndParseDateValue, { start: firstDay, end: lastDay })
+                if (checkParsedDateIsInRange) {
+                    todosContainerDisplay.appendChild(displayTodos(todoItem));
+                }
+            }
+        }
+    });
+
+})
+// f_firstDay = _.format(new Date(firstDay), 'yyyy/dd/MM');
+// _.compareAsc(new Date(f_lastDay), new Date(firstDay))
+
+
+// debugger; chkNewDate = [
+//     new Date('2021, 8, 9'),
+//     new Date('2020, 10, 20'),
+//     new Date('2021, 10, 11'),
+//     new Date('2021, 9, 29')
+// ].map(item => isWithinInterval(item, { start: firstDay, end: lDay }))
 
 
 
