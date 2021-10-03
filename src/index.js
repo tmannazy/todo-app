@@ -88,7 +88,10 @@ getTodoContainer.addEventListener('click', event => {
 // SideBar Navigation //
 /*****************************/
 homeBtn.addEventListener('click', () => {
-    if (!todosContainerDisplay.hasChildNodes()) {
+    if (!(todosContainerDisplay.hasChildNodes())) {
+        todosContainerDisplay.appendChild(displayTodos());
+    } else {
+        todosContainerDisplay.textContent = '';
         todosContainerDisplay.appendChild(displayTodos());
     }
 });
