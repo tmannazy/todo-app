@@ -167,7 +167,9 @@ const displayTodosInSelectedProject = () => {
             const loopTodoListArray = myTodoList.filter(todoItem => {
                 const checkForSelectedProjectNameValue = Object.values(todoItem).forEach(item => {
                     const valuesOfKeysInSmallCase = item.toLowerCase();
-                    if (valuesOfKeysInSmallCase === selectedProjectName) {
+                    if (valuesOfKeysInSmallCase === selectedProjectName &&
+                        todosContainerDisplay.contains(emptyProjectContainer)) {
+                        emptyProjectContainer.remove();
                         todosContainerDisplay.appendChild(displayTodos(todoItem));
                     }
                     else {
