@@ -1,4 +1,4 @@
-import { format, lastDayOfWeek, subDays, isWithinInterval, parse } from "date-fns";
+import { format, lastDayOfWeek, subDays, isWithinInterval, parse, isToday } from "date-fns";
 import { completedTodo, displayTodos } from "./displayTodos";
 import { footer } from "./footer";
 import { form } from "./form";
@@ -21,6 +21,7 @@ const addNewProject = document.querySelector('.new-project');
 const homeBtn = document.querySelector('.home');
 const nav = document.querySelector('nav');
 const weekBtn = document.querySelector('.week');
+const todayBtn = document.querySelector('.today');
 const todosContainerDisplay = document.createElement('div');
 todosContainerDisplay.setAttribute('class', 'display-todos');
 pageContent.appendChild(todosContainerDisplay);
@@ -216,6 +217,26 @@ weekBtn.addEventListener('click', () => {
         }
     });
 });
+
+
+/***************************/
+// Display Daily Todos //
+/***************************/
+
+todayBtn.addEventListener('click', () => {
+    const today = format(new Date(), 'dd.MM.yyyy');
+    todosContainerDisplay.textContent = '';
+    const loopTodoListArray = myTodoList.filter(todoItem => {
+        for (const [key, value] of Object.entries(todoItem)) {
+            if (key === 'date') {
+                if (today === value) {
+                    todosContainerDisplay.appendChild(displayTodos(todoItem));
+                }
+            }
+        }
+    });
+});
+
 
 
 // body.insertBefore(pageHeader(), pageContent);
