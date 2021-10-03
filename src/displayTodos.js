@@ -1,5 +1,5 @@
 import { myTodoList } from "./todoItemsObj";
-import { format, parseISO } from 'date-fns';
+import { format } from 'date-fns';
 
 
 
@@ -69,7 +69,7 @@ const displayTodos = todoList => {
                     break;
                 case 'date':
                     taskItem.setAttribute('class', `task-${showTodo}`);
-                    taskItem.textContent = `${format(new Date(todo[showTodo]), 'dd.MM.yyyy')}`;
+                    taskItem.textContent = `${todo[showTodo]}`;
                     taskItemLabel.textContent = showTodo;
                     break;
                 case 'project':
