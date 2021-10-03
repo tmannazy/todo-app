@@ -61,7 +61,7 @@ const save = () => {
         const description = document.getElementById('description').value;
         const notes = document.getElementById('notes').value
         const priority = document.getElementById('priority').value;
-        const date = document.getElementById('date').value;
+        const date = format(new Date(document.getElementById('date').value), 'dd.MM.yyyy');
         const project = document.getElementById('project').value;
         const userTodoEntries = TodoFactoryFunction(title, description, notes, priority, date, project);
         const genFormObjects = myTodoList.push(userTodoEntries);
@@ -181,7 +181,6 @@ const displayTodosInSelectedProject = () => {
 displayTodosInSelectedProject();
 
 
-
 /****************************/
 // Display Weekly Todos //
 /****************************/
@@ -196,15 +195,15 @@ weekBtn.addEventListener('click', () => {
             if (key === 'date') {
                 if (typeof value === 'string') {
                     const getDateAndParseDateValue = parse(value, 'dd.MM.yyyy', new Date());
-                    checkRange(getDateAndParseDateValue);
+                    checkDateRange(getDateAndParseDateValue);
                 }
                 else if (Object.prototype.toString.call(value) === '[object Date]') {
-                    checkRange(value);
+                    checkDateRange(value);
                 }
             }
         }
 
-        function checkRange(dateValue) {
+        function checkDateRange(dateValue) {
             const checkParsedDateIsInRange = isWithinInterval(dateValue, { start: firstDayInTheWeek, end: lastDayInTheWeek })
             if (checkParsedDateIsInRange) {
                 todosContainerDisplay.appendChild(displayTodos(todoItem));
@@ -212,17 +211,6 @@ weekBtn.addEventListener('click', () => {
         }
     });
 });
-// f_firstDay = _.format(new Date(firstDay), 'yyyy/dd/MM');
-// _.compareAsc(new Date(f_lastDay), new Date(firstDay))
-
-
-// debugger; chkNewDate = [
-//     new Date('2021, 8, 9'),
-//     new Date('2020, 10, 20'),
-//     new Date('2021, 10, 11'),
-//     new Date('2021, 9, 29')
-// ].map(item => isWithinInterval(item, { start: firstDay, end: lDay }))
-
 
 
 // body.insertBefore(pageHeader(), pageContent);
