@@ -5,7 +5,7 @@ import { form } from "./form";
 import { pageHeader } from "./header";
 import { addNewProjectItem, createNewProjectInput, deleteProjectItem } from "./project";
 import { sideMenu } from "./sideMenu";
-import { myTodoList, TodoFactoryFunction } from "./todoItemsObj";
+import { myTodoList, TodoFactoryFunction, storeTodoItemsToLocalStorage } from "./todoItemsObj";
 
 
 // cacheDOM
@@ -238,7 +238,7 @@ todayBtn.addEventListener('click', () => {
 });
 
 
-
+storeTodoItemsToLocalStorage();
 // body.insertBefore(pageHeader(), pageContent);
 // const date = format(new Date(2021, 08, 19), 'dd/MM/yyyy');
 // console.log(date);
