@@ -1,5 +1,5 @@
 import { format } from 'date-fns';
-import { displayTodos } from './displayTodos';
+
 
 
 const TodoFactoryFunction = (title, description, notes, priority, date, project) => {
@@ -13,9 +13,18 @@ const myTodoList = [{
     description: 'Keep the Acronyms in mind - \'ABL, ABB, CCC\' in mind daily to draw inspiration',
     notes: 'ABL stands for Always Be Learning. ABB stands for Always Be Building. CCC stands for Code Code Code. These acronyms were invented by Danny Thompson as one of the major attributes to become a better to be a programmer',
     priority: 'High',
-    date: new Date(),
+    date: format(new Date(), 'dd.MM.yyyy'),
     project: 'Coding'
-}]
+}];
 
 
-export { myTodoList, TodoFactoryFunction };
+
+const storeTodoItemsToLocalStorage = () => {
+    const getStoredTodoItems = JSON.parse(localStorage.getItem('todoLists') || '[]');
+    const stringifyTodoItems = localStorage.setItem('todoLists', JSON.stringify(myTodoList));
+    return getStoredTodoItems;
+}
+
+
+
+export { myTodoList, TodoFactoryFunction, storeTodoItemsToLocalStorage };
