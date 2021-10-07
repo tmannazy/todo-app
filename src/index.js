@@ -90,11 +90,16 @@ getTodoContainer.addEventListener('click', event => {
 // SideBar Navigation //
 /*****************************/
 homeBtn.addEventListener('click', () => {
-    if (!(todosContainerDisplay.hasChildNodes())) {
+    const pushDefaultTodoItem = () => {
+        myTodoList.forEach(item => storeTodoItemsToLocalStorage(item));
         todosContainerDisplay.appendChild(displayTodos());
+    }
+
+    if (!(todosContainerDisplay.hasChildNodes())) {
+        pushDefaultTodoItem();
     } else {
         todosContainerDisplay.textContent = '';
-        todosContainerDisplay.appendChild(displayTodos());
+        pushDefaultTodoItem();
     }
 });
 
