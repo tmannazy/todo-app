@@ -164,10 +164,9 @@ const displayTodosInSelectedProject = () => {
     emptyProjectContainer.textContent = 'There are no todo items for this project.'
     todoProjectContainer.addEventListener('click', e => {
         if (e.target !== addNewProject && !e.target.matches('.del-project')) {
-            const storedItems = storeTodoItemsToLocalStorage();
             todosContainerDisplay.textContent = '';
             const selectedProjectName = e.target.textContent.toLowerCase();
-            const loopTodoListArray = storedItems.filter(todoItem => {
+            const loopTodoListArray = storeTodoItemsToLocalStorage().filter(todoItem => {
                 if (!(todoItem === null)) {
                     const checkForSelectedProjectNameValue = Object.values(todoItem).forEach(item => {
                         const valuesOfKeysInSmallCase = item.toLowerCase();
@@ -200,7 +199,7 @@ weekBtn.addEventListener('click', () => {
     const lDay = format(new Date(lastDayInTheWeek), 'yyyy/MM/dd');
     const firstDayInTheWeek = subDays(new Date(lDay), 6);
     todosContainerDisplay.textContent = '';
-    const loopTodoListArray = myTodoList.filter(todoItem => {
+    const loopTodoListArray = storeTodoItemsToLocalStorage().filter(todoItem => {
         for (const [key, value] of Object.entries(todoItem)) {
             if (key === 'date') {
                 if (typeof value === 'string') {
