@@ -19,9 +19,11 @@ const myTodoList = [{
 
 
 
-const storeTodoItemsToLocalStorage = () => {
+const storeTodoItemsToLocalStorage = newTodo => {
     const getStoredTodoItems = JSON.parse(localStorage.getItem('todoLists') || '[]');
-    const stringifyTodoItems = localStorage.setItem('todoLists', JSON.stringify(myTodoList));
+    if (!(newTodo === undefined || newTodo === null))
+        getStoredTodoItems.push(newTodo);
+    const stringifyTodoItems = localStorage.setItem('todoLists', JSON.stringify(getStoredTodoItems));
     return getStoredTodoItems;
 }
 
