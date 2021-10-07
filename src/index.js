@@ -165,25 +165,18 @@ const displayTodosInSelectedProject = () => {
     todoProjectContainer.addEventListener('click', e => {
         if (e.target !== addNewProject && !e.target.matches('.del-project')) {
             todosContainerDisplay.textContent = '';
+            todosContainerDisplay.appendChild(emptyProjectContainer);
             const selectedProjectName = e.target.textContent.toLowerCase();
             const loopTodoListArray = storeTodoItemsToLocalStorage().filter(todoItem => {
-                if (!(todoItem === null)) {
-                    const checkForSelectedProjectNameValue = Object.values(todoItem).forEach(item => {
-                        const valuesOfKeysInSmallCase = item.toLowerCase();
-                        if (valuesOfKeysInSmallCase === selectedProjectName &&
-                            todosContainerDisplay.contains(emptyProjectContainer)) {
-                            emptyProjectContainer.remove();
-                            todosContainerDisplay.appendChild(displayTodos(todoItem));
-                        }
-                        else {
-                            todosContainerDisplay.appendChild(emptyProjectContainer);
-                        }
-                    });
-                }
+                const checkForSelectedProjectNameValue = Object.values(todoItem).forEach(item => {
+                    if (item === selectedProjectName) {
+                        emptyProjectContainer.remove();
+                        todosContainerDisplay.appendChild(displayTodos(todoItem));
+                    }
+                });
             });
         }
     });
-
 }
 
 
