@@ -67,6 +67,7 @@ const save = () => {
         const userTodoEntries = TodoFactoryFunction(title, description, notes, priority, date, project);
         const genFormObjects = myTodoList.push(userTodoEntries);
         todosContainerDisplay.appendChild(displayTodos(myTodoList));
+        storeTodoItemsToLocalStorage(userTodoEntries);
     });
 }
 
@@ -163,20 +164,23 @@ const displayTodosInSelectedProject = () => {
     emptyProjectContainer.textContent = 'There are no todo items for this project.'
     todoProjectContainer.addEventListener('click', e => {
         if (e.target !== addNewProject && !e.target.matches('.del-project')) {
+            const storedItems = storeTodoItemsToLocalStorage();
             todosContainerDisplay.textContent = '';
             const selectedProjectName = e.target.textContent.toLowerCase();
-            const loopTodoListArray = myTodoList.filter(todoItem => {
-                const checkForSelectedProjectNameValue = Object.values(todoItem).forEach(item => {
-                    const valuesOfKeysInSmallCase = item.toLowerCase();
-                    if (valuesOfKeysInSmallCase === selectedProjectName &&
-                        todosContainerDisplay.contains(emptyProjectContainer)) {
-                        emptyProjectContainer.remove();
-                        todosContainerDisplay.appendChild(displayTodos(todoItem));
-                    }
-                    else {
-                        todosContainerDisplay.appendChild(emptyProjectContainer);
-                    }
-                });
+            const loopTodoListArray = storedItems.filter(todoItem => {
+                if (!(todoItem === 'null')) {
+                    const checkForSelectedProjectNameValue = Object.values(todoItem).forEach(item => {
+                        const valuesOfKeysInSmallCase = item.toLowerCase();
+                        if (valuesOfKeysInSmallCase === selectedProjectName &&
+                            todosContainerDisplay.contains(emptyProjectContainer)) {
+                            emptyProjectContainer.remove();
+                            todosContainerDisplay.appendChild(displayTodos(todoItem));
+                        }
+                        else {
+                            todosContainerDisplay.appendChild(emptyProjectContainer);
+                        }
+                    });
+                }
             });
         }
     });
@@ -238,7 +242,6 @@ todayBtn.addEventListener('click', () => {
 });
 
 
-storeTodoItemsToLocalStorage();
 // body.insertBefore(pageHeader(), pageContent);
 // const date = format(new Date(2021, 08, 19), 'dd/MM/yyyy');
 // console.log(date);
