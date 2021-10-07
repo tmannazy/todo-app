@@ -21,11 +21,15 @@ const myTodoList = [{
 
 const storeTodoItemsToLocalStorage = newTodo => {
     const getStoredTodoItems = JSON.parse(localStorage.getItem('todoLists') || '[]');
+    const stringifyTodoItems = localStorage.setItem('todoLists', JSON.stringify(getStoredTodoItems));
     if (!(newTodo === undefined || newTodo === null))
         getStoredTodoItems.push(newTodo);
-    const stringifyTodoItems = localStorage.setItem('todoLists', JSON.stringify(getStoredTodoItems));
+    else if (typeof newTodo === 'number')
+        return true;
     return getStoredTodoItems;
 }
+
+
 
 
 
