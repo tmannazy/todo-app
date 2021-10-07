@@ -1,5 +1,4 @@
-import { myTodoList } from "./todoItemsObj";
-import { format } from 'date-fns';
+import { myTodoList, storeTodoItemsToLocalStorage } from "./todoItemsObj";
 
 
 
@@ -19,7 +18,7 @@ const displayTodos = todoList => {
     taskContainer.setAttribute('id', uniqueID());
 
     if (todoList === undefined) {
-        myTodoList.forEach(todo => {
+        storeTodoItemsToLocalStorage().forEach(todo => {
             createTodoItems(todo);
         });
     }
