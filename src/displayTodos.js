@@ -89,10 +89,8 @@ const displayTodos = todoList => {
 
 const completedTodo = todoIndex => {
     const getStoredTodoItems = JSON.parse(localStorage.getItem('todoLists') || '[]');
-    getStoredTodoItems.filter((itemToRemove, index) => {
-        if (index === todoIndex)
-            itemToRemove.splice(todoIndex, 1);
-    });
+    getStoredTodoItems.splice(todoIndex, 1);
+    localStorage.setItem('todoLists', JSON.stringify(getStoredTodoItems));
 }
 
 
