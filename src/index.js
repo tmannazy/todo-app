@@ -168,7 +168,7 @@ const displayTodosInSelectedProject = () => {
             todosContainerDisplay.textContent = '';
             const selectedProjectName = e.target.textContent.toLowerCase();
             const loopTodoListArray = storedItems.filter(todoItem => {
-                if (!(todoItem === 'null')) {
+                if (!(todoItem === null)) {
                     const checkForSelectedProjectNameValue = Object.values(todoItem).forEach(item => {
                         const valuesOfKeysInSmallCase = item.toLowerCase();
                         if (valuesOfKeysInSmallCase === selectedProjectName &&
