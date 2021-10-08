@@ -92,7 +92,9 @@ getTodoContainer.addEventListener('click', event => {
 homeBtn.addEventListener('click', () => {
     const pushDefaultTodoItem = () => {
         myTodoList.forEach(item => storeTodoItemsToLocalStorage(item));
-        todosContainerDisplay.appendChild(displayTodos());
+        storeTodoItemsToLocalStorage().forEach(item => {
+            todosContainerDisplay.appendChild(displayTodos(item));
+        });
     }
 
     if (!(todosContainerDisplay.hasChildNodes())) {
