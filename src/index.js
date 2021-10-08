@@ -176,7 +176,7 @@ const displayTodosInSelectedProject = () => {
             const selectedProjectName = e.target.textContent.toLowerCase();
             const loopTodoListArray = storeTodoItemsToLocalStorage().filter(todoItem => {
                 const checkForSelectedProjectNameValue = Object.values(todoItem).forEach(item => {
-                    if (item === selectedProjectName) {
+                    if (item.toLowerCase() === selectedProjectName) {
                         emptyProjectContainer.remove();
                         todosContainerDisplay.appendChild(displayTodos(todoItem));
                     }
