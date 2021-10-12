@@ -3,8 +3,8 @@ import { completedTodo, displayTodos } from "./displayTodos";
 import { footer } from "./footer";
 import { form } from "./form";
 import { pageHeader } from "./header";
-import { addNewProjectItem, createNewProjectInput, deleteProjectItem } from "./project";
-import { sideMenu } from "./sideMenu";
+import { addNewProjectItem, createNewProjectInput, deleteProjectItem, storeProjectsToLocalStorage } from "./project";
+import { newlyAddedProjectItemInSideMenu, sideMenu } from "./sideMenu";
 import { myTodoList, TodoFactoryFunction, storeTodoItemsToLocalStorage } from "./todoItemsObj";
 
 
@@ -126,7 +126,9 @@ const displayNewProjectItem = () => {
         .addEventListener('click', () => {
             const newProjectValue = document.querySelector('.project-input').value;
             const projectListContainer = document.querySelector('.project-list');
-            projectListContainer.insertBefore(projectListContainer.appendChild(addNewProjectItem(newProjectValue)), addNewProject);
+            storeProjectsToLocalStorage(newProjectValue);
+            const getStoredProjects = newlyAddedProjectItemInSideMenu();
+            projectListContainer.insertBefore(projectListContainer.appendChild(getStoredProjects), addNewProject);
         });
 
     const newProjectValue = document.querySelector('.project-input')
