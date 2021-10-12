@@ -1,6 +1,6 @@
 import { newlyAddedProjectItemInSideMenu } from "./sideMenu";
 
-const projectsList = ['home', 'office', 'coding', 'workout', 'fun'];
+const projectsList = ['office', 'coding', 'workout', 'fun'];
 
 const showProjects = () => {
     const projectSelect = document.createElement('select');
@@ -46,5 +46,18 @@ const deleteProjectItem = removeItem => {
     return projectItemToRemove;
 }
 
-
-export { showProjects, addNewProjectItem, deleteProjectItem, createNewProjectInput, projectsList };
+const storeProjectsToLocalStorage = newProject => {
+    const getStoredProjects = JSON.parse(localStorage.getItem('projectsList') || "[]");
+    if (!(newProject === undefined))
+        getStoredProjects.push(newProject);
+    const stringifyProjectsList = localStorage.setItem('projectsList', JSON.stringify(getStoredProjects));
+    return getStoredProjects;
+}
+export {
+    showProjects,
+    addNewProjectItem,
+    deleteProjectItem,
+    createNewProjectInput,
+    projectsList,
+    storeProjectsToLocalStorage
+};
