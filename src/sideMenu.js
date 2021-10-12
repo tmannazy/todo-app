@@ -13,7 +13,7 @@ const sideMenu = () => {
             const span = document.createElement('span'),
                 projUnorderedList = document.createElement('ul'),
                 button = document.createElement('button'),
-                projects = projectsList;
+                projects = storeProjectsToLocalStorage();
             projUnorderedList.setAttribute('class', 'project-list');
 
             span.textContent = element;
@@ -24,12 +24,17 @@ const sideMenu = () => {
             listItemLink.appendChild(span);
             listItem.appendChild(listItemLink);
 
-            const loopProjectItems = projects.forEach(project => {
-                const projListItems = document.createElement('li');
-                projListItems.textContent = project;
-                projListItems.setAttribute('class', project);
-                projUnorderedList.append(projListItems, button);
-                listItem.appendChild(projUnorderedList);
+            const loopProjectItems = projects.forEach((project, index) => {
+                if (index >= 4) {
+                    projUnorderedList.appendChild(newlyAddedProjectItemInSideMenu());
+                }
+                else {
+                    const projListItems = document.createElement('li');
+                    projListItems.textContent = project;
+                    projListItems.setAttribute('class', project);
+                    projUnorderedList.append(projListItems, button);
+                    listItem.appendChild(projUnorderedList);
+                }
             })
             unorderedList.appendChild(listItem);
         }
@@ -50,14 +55,16 @@ const newlyAddedProjectItemInSideMenu = () => {
     const newProjListItem = document.createElement('li'),
         delProjectBtn = document.createElement('button'),
         delBtnContainer = document.createElement('div');
-    for (let i = 0; i < projects.length; i++) {
-        newProjListItem.setAttribute('class', projects[i]);
-        delProjectBtn.setAttribute('class', 'del-project');
-        delBtnContainer.setAttribute('class', 'del-project-container');
-        newProjListItem.textContent = projects[i];
-        delProjectBtn.textContent = 'Del';
-        delBtnContainer.appendChild(delProjectBtn)
-        newProjListItem.appendChild(delBtnContainer);
+    for (let i = 3; i < projects.length; i++) {
+        if (i >= 4) {
+            newProjListItem.setAttribute('class', projects[i]);
+            delProjectBtn.setAttribute('class', 'del-project');
+            delBtnContainer.setAttribute('class', 'del-project-container');
+            newProjListItem.textContent = projects[i];
+            delProjectBtn.textContent = 'Del';
+            delBtnContainer.appendChild(delProjectBtn)
+            newProjListItem.appendChild(delBtnContainer);
+        }
     }
     return newProjListItem;
 }
