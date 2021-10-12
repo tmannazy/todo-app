@@ -1,4 +1,4 @@
-import { projectsList } from "./project";
+import { projectsList, storeProjectsToLocalStorage } from "./project";
 
 const menuItems = ['home', 'today', 'week', 'project'],
     nav = document.createElement('nav'),
@@ -46,20 +46,18 @@ const sideMenu = () => {
 }
 
 const newlyAddedProjectItemInSideMenu = () => {
-    const projects = projectsList;
+    const projects = storeProjectsToLocalStorage();
     const newProjListItem = document.createElement('li'),
         delProjectBtn = document.createElement('button'),
         delBtnContainer = document.createElement('div');
-    for (let i = 3; i < projects.length; i++) {
-        if (i >= 4) {
-            newProjListItem.setAttribute('class', projects[i]);
-            delProjectBtn.setAttribute('class', 'del-project');
-            delBtnContainer.setAttribute('class', 'del-project-container');
-            newProjListItem.textContent = projects[i];
-            delProjectBtn.textContent = 'Del';
-            delBtnDiv.appendChild(delProjectBtn)
-            newProjListItem.appendChild(delBtnContainer);
-        }
+    for (let i = 0; i < projects.length; i++) {
+        newProjListItem.setAttribute('class', projects[i]);
+        delProjectBtn.setAttribute('class', 'del-project');
+        delBtnContainer.setAttribute('class', 'del-project-container');
+        newProjListItem.textContent = projects[i];
+        delProjectBtn.textContent = 'Del';
+        delBtnContainer.appendChild(delProjectBtn)
+        newProjListItem.appendChild(delBtnContainer);
     }
     return newProjListItem;
 }
