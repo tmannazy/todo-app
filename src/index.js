@@ -91,17 +91,21 @@ getTodoContainer.addEventListener('click', event => {
 /*****************************/
 homeBtn.addEventListener('click', () => {
     const pushDefaultTodoItem = () => {
-        myTodoList.forEach(item => storeTodoItemsToLocalStorage(item));
-        storeTodoItemsToLocalStorage().forEach(item => {
-            todosContainerDisplay.appendChild(displayTodos(item));
+        storeTodoItemsToLocalStorage();
+    }
+
+    const showAllTodoItems = () => {
+        storeTodoItemsToLocalStorage().forEach(todoItem => {
+            todosContainerDisplay.appendChild(displayTodos(todoItem));
         });
     }
 
     if (!(todosContainerDisplay.hasChildNodes())) {
         pushDefaultTodoItem();
+        showAllTodoItems()
     } else {
         todosContainerDisplay.textContent = '';
-        pushDefaultTodoItem();
+        showAllTodoItems();
     }
 });
 
