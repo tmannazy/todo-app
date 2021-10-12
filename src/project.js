@@ -41,13 +41,14 @@ const createNewProjectInput = () => {
     return div;
 }
 
-const deleteProjectItem = removeItem => {
-    const projectItemToRemove = projectsList.splice(removeItem, 1);
-    return projectItemToRemove;
+const deleteProjectItem = removeItemIndex => {
+    const getStoredProjectsList = JSON.parse(localStorage.getItem('projectsList') || '[]');
+    getStoredProjectsList.splice(removeItemIndex, 1);
+    localStorage.setItem('projectsList', JSON.stringify(getStoredProjectsList));
 }
 
 const storeProjectsToLocalStorage = newProject => {
-    const getStoredProjects = JSON.parse(localStorage.getItem('projectsList') || '[]');
+    const getStoredProjects = JSON.parse(localStorage.getItem('projectsList'));
     localStorage.setItem('projectsList', JSON.stringify(projectsList));
     if (!(newProject === undefined)) {
         getStoredProjects.push(newProject);
