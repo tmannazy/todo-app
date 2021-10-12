@@ -21,10 +21,8 @@ const myTodoList = [{
 
 const storeTodoItemsToLocalStorage = newTodo => {
     function checkForDefaultTodoItem() {
-        const defaultValueCheck = getStoredTodoItems.filter(itemToCheck => {
-            if (Object.values(itemToCheck) === 'Practice Coding Exercise');
-        });
-        return defaultValueCheck;
+        const defaultTodoItem = getStoredTodoItems.some(itemToCheck => itemToCheck.title === 'Practice Coding Exercise');
+        return defaultTodoItem;
     }
     const getStoredTodoItems = JSON.parse(localStorage.getItem('todoLists') || '[]');
     if (!(newTodo === undefined || newTodo === null))
