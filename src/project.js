@@ -47,12 +47,12 @@ const deleteProjectItem = removeItem => {
 }
 
 const storeProjectsToLocalStorage = newProject => {
+    const getStoredProjects = JSON.parse(localStorage.getItem('projectsList') || '[]');
     localStorage.setItem('projectsList', JSON.stringify(projectsList));
-    const getStoredProjects = JSON.parse(localStorage.getItem('projectsList'));
     if (!(newProject === undefined)) {
         getStoredProjects.push(newProject);
-        localStorage.setItem('projectsList', JSON.stringify(getStoredProjects));
     }
+    const stringifyProjectLists = localStorage.setItem('projectsList', JSON.stringify(getStoredProjects));
     return getStoredProjects;
 }
 
