@@ -13,7 +13,7 @@ const sideMenu = () => {
             const span = document.createElement('span'),
                 projUnorderedList = document.createElement('ul'),
                 button = document.createElement('button'),
-                projects = projectsList;
+                projects = storeProjectsToLocalStorage();
             projUnorderedList.setAttribute('class', 'project-list');
 
             span.textContent = element;
@@ -24,11 +24,15 @@ const sideMenu = () => {
             listItemLink.appendChild(span);
             listItem.appendChild(listItemLink);
 
-            const loopProjectItems = projects.forEach(project => {
+            const loopProjectItems = projects.forEach((project, index) => {
                 const projListItems = document.createElement('li');
                 projListItems.textContent = project;
                 projListItems.setAttribute('class', project);
-                projUnorderedList.append(projListItems, button);
+                if (index > 3) {
+                    projUnorderedList.insertBefore(projUnorderedList.appendChild(newlyAddedProjectItemInSideMenu()), button);
+                }
+                else
+                    projUnorderedList.append(projListItems, button);
                 listItem.appendChild(projUnorderedList);
             })
             unorderedList.appendChild(listItem);
@@ -50,7 +54,7 @@ const newlyAddedProjectItemInSideMenu = () => {
     const newProjListItem = document.createElement('li'),
         delProjectBtn = document.createElement('button'),
         delBtnContainer = document.createElement('div');
-    for (let i = 0; i < projects.length; i++) {
+    for (let i = 4; i < projects.length; i++) {
         newProjListItem.setAttribute('class', projects[i]);
         delProjectBtn.setAttribute('class', 'del-project');
         delBtnContainer.setAttribute('class', 'del-project-container');
