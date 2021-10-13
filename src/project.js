@@ -4,7 +4,7 @@ const projectsList = ['office', 'coding', 'workout', 'fun'];
 
 const showProjects = () => {
     const projectSelect = document.createElement('select');
-    const buildProjectArr = projectsList.forEach(projectName => {
+    const buildProjectArr = storeProjectsToLocalStorage().forEach(projectName => {
         const projectOption = document.createElement('option');
         const charRem = projectName.substr(1);
 
@@ -16,11 +16,6 @@ const showProjects = () => {
         projectSelect.appendChild(projectOption);
     });
     return projectSelect;
-}
-
-const addNewProjectItem = newItem => {
-    projectsList.push(newItem);
-    return newlyAddedProjectItemInSideMenu();
 }
 
 const createNewProjectInput = () => {
