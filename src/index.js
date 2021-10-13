@@ -179,7 +179,7 @@ const displayTodosInSelectedProject = () => {
         if (e.target !== addNewProject && !e.target.matches('.del-project')) {
             todosContainerDisplay.textContent = '';
             todosContainerDisplay.appendChild(emptyProjectContainer);
-            const selectedProjectName = e.target.textContent.toLowerCase();
+            const selectedProjectName = e.target.className;
             const loopTodoListArray = storeTodoItemsToLocalStorage().filter(todoItem => {
                 const checkForSelectedProjectNameValue = Object.values(todoItem).forEach(item => {
                     if (item.toLowerCase() === selectedProjectName) {
