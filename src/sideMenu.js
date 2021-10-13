@@ -29,7 +29,7 @@ const sideMenu = () => {
                 projListItems.textContent = project;
                 projListItems.setAttribute('class', project);
                 if (index > 3) {
-                    projUnorderedList.insertBefore(projUnorderedList.appendChild(newlyAddedProjectItemInSideMenu()), button);
+                    projUnorderedList.insertBefore(projUnorderedList.appendChild(newlyAddedProjectItemInSideMenu(index)), button);
                 }
                 else
                     projUnorderedList.append(projListItems, button);
@@ -49,19 +49,28 @@ const sideMenu = () => {
     return nav;
 }
 
-const newlyAddedProjectItemInSideMenu = () => {
+const newlyAddedProjectItemInSideMenu = projectIndex => {
     const projects = storeProjectsToLocalStorage();
     const newProjListItem = document.createElement('li'),
         delProjectBtn = document.createElement('button'),
         delBtnContainer = document.createElement('div');
+
     for (let i = 4; i < projects.length; i++) {
-        newProjListItem.setAttribute('class', projects[i]);
-        delProjectBtn.setAttribute('class', 'del-project');
-        delBtnContainer.setAttribute('class', 'del-project-container');
-        newProjListItem.textContent = projects[i];
-        delProjectBtn.textContent = 'Del';
-        delBtnContainer.appendChild(delProjectBtn)
-        newProjListItem.appendChild(delBtnContainer);
+        const newProjectData = () => {
+            newProjListItem.setAttribute('class', projects[i]);
+            delProjectBtn.setAttribute('class', 'del-project');
+            delBtnContainer.setAttribute('class', 'del-project-container');
+            newProjListItem.textContent = projects[i];
+            delProjectBtn.textContent = 'Del';
+            delBtnContainer.appendChild(delProjectBtn)
+            newProjListItem.appendChild(delBtnContainer);
+        }
+        if (i === projectIndex) {
+            newProjectData();
+            return newProjListItem;
+        }
+        else
+            newProjectData();
     }
     return newProjListItem;
 }
