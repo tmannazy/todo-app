@@ -1,11 +1,11 @@
-import { format, lastDayOfWeek, subDays, isWithinInterval, parse, isToday } from "date-fns";
+import { format, isWithinInterval, lastDayOfWeek, parse, subDays } from "date-fns";
 import { completedTodo, displayTodos } from "./displayTodos";
 import { footer } from "./footer";
 import { form } from "./form";
 import { pageHeader } from "./header";
-import { addNewProjectItem, createNewProjectInput, deleteProjectItem, storeProjectsToLocalStorage } from "./project";
+import { createNewProjectInput, deleteProjectItem, storeProjectsToLocalStorage } from "./project";
 import { newlyAddedProjectItemInSideMenu, sideMenu } from "./sideMenu";
-import { myTodoList, TodoFactoryFunction, storeTodoItemsToLocalStorage } from "./todoItemsObj";
+import { myTodoList, storeTodoItemsToLocalStorage, TodoFactoryFunction } from "./todoItemsObj";
 
 
 // cacheDOM
@@ -246,7 +246,3 @@ todayBtn.addEventListener('click', () => {
     });
 });
 
-
-// body.insertBefore(pageHeader(), pageContent);
-// const date = format(new Date(2021, 08, 19), 'dd/MM/yyyy');
-// console.log(date);
