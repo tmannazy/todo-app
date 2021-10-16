@@ -6,6 +6,7 @@ import { pageHeader } from "./header";
 import { createNewProjectInput, deleteProjectItem, storeProjectsToLocalStorage } from "./project";
 import { newlyAddedProjectItemInSideMenu, sideMenu } from "./sideMenu";
 import { myTodoList, storeTodoItemsToLocalStorage, TodoFactoryFunction } from "./todoItemsObj";
+import './style.css';
 
 
 // cacheDOM
