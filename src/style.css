@@ -1,4 +1,6 @@
-* {
+*,
+::before,
+::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -8,7 +10,20 @@ body {
     background-color: #9AC6C5;
 }
 
+header {
+    display: flex;
+    background-color: black;
+    justify-content: space-between;
+}
+
+header :nth-child(2) {
+    order: -1;
+    padding: 15px;
+    margin: 10px;
+    background-color: whitesmoke;
+}
+
 h1 {
     color: orange;
-    background-color: black;
+    padding: 20px;
 }
