@@ -215,10 +215,11 @@ const displayTodosInSelectedProject = () => {
       const selectedProjectName = e.target.className;
       const loopTodoListArray = storeTodoItemsToLocalStorage().filter(
         (todoItem) => {
-          const checkForSelectedProjectNameValue = Object.values(
-            todoItem
-          ).forEach((item) => {
-            if (item.toLowerCase() === selectedProjectName.toLowerCase()) {
+          Object.entries(todoItem).forEach(([key, value]) => {
+            if (
+              `${key}` === "project" &&
+              `${value.toLowerCase()}` === selectedProjectName.toLowerCase()
+            ) {
               emptyProjectContainer.remove();
               todosContainerDisplay.appendChild(displayTodos(todoItem));
             }
