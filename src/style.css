@@ -68,6 +68,7 @@ nav li>a {
 
 .project-list li {
     border-bottom: 1px solid #fff;
+    cursor: pointer;
 }
 
 .project-list li:last-of-type {
@@ -79,7 +80,7 @@ nav li>a {
 }
 
 .project-list>li:nth-child(1) {
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 .del-project-container {
@@ -94,6 +95,20 @@ nav li>a {
     border: none;
     padding: 0.3rem;
     border-radius: 2px;
+}
+
+.new-project {
+    display: inline-block;
+    padding: 0.7rem 0.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 5px;
 }
 
 .display-todos {
