@@ -178,6 +178,9 @@ const closeNewProjectContainer = () => {
   const closeNewProjectBtn = document
     .querySelector(".close-new-project-btn")
     .addEventListener("click", () => {
+      //   const projectListContainer = document
+      //     .querySelector(".project-list")
+      //     .classList.toggle("project-list");
       document.querySelector(".submit-new-proj-container").remove();
       addNewProject.addEventListener("click", newProjectActions);
     });
