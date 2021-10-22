@@ -43,7 +43,7 @@ h1 {
 
 nav {
     padding-top: 20px;
-    padding-left: 40px;
+    padding-left: 30px;
     grid-area: nav;
     text-transform: uppercase;
 }
@@ -56,6 +56,26 @@ nav ul>li {
 
 nav li>a {
     text-decoration: none;
+}
+
+.project:hover .project-list {
+    display: flex;
+    flex-direction: column;
+    background: #B2D6FF;
+    border-radius: 5px;
+    padding-top: 7px;
+}
+
+.project-list li {
+    border-bottom: 1px solid #fff;
+}
+
+.project-list li:last-of-type {
+    border-bottom: none;
+}
+
+.project-list {
+    display: none;
 }
 
 .project-list>li:nth-child(1) {
@@ -72,7 +92,8 @@ nav li>a {
     outline: none;
     cursor: pointer;
     border: none;
-    margin-top: 0;
+    padding: 0.3rem;
+    border-radius: 2px;
 }
 
 .display-todos {
@@ -83,7 +104,7 @@ nav li>a {
     display: grid;
     width: 100%;
     margin: 0 auto;
-    grid-template-columns: 3fr 30px 9fr;
+    grid-template-columns: 4fr 30px 9fr;
     grid-template-rows: auto;
     grid-template-areas:
         "nav display-todos display-todos";
