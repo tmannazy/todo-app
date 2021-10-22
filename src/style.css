@@ -41,12 +41,50 @@ h1 {
     padding: 20px;
 }
 
-.content {
-    display: flex;
-    justify-content: space-between;
+nav {
+    padding-top: 20px;
+    padding-left: 40px;
+    grid-area: nav;
+    text-transform: uppercase;
 }
 
-nav {
-    margin-right: 50px;
-    padding: 40px 32px 0 70px;
+nav ul>li {
+    list-style: none;
+    text-align: justify;
+    margin-bottom: 10px;
+}
+
+nav li>a {
+    text-decoration: none;
+}
+
+.project-list>li:nth-child(1) {
+    margin-top: 10px;
+}
+
+.del-project-container {
+    display: inline-block;
+    margin-left: 15px;
+    margin-top: 0;
+}
+
+.del-project {
+    outline: none;
+    cursor: pointer;
+    border: none;
+    margin-top: 0;
+}
+
+.display-todos {
+    grid-area: display-todos;
+}
+
+.content {
+    display: grid;
+    width: 100%;
+    margin: 0 auto;
+    grid-template-columns: 3fr 30px 9fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "nav display-todos display-todos";
 }
