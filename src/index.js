@@ -139,9 +139,15 @@ const newProjectActions = () => {
   displayNewProjectItem();
   closeNewProjectContainer();
 
+  const projectListContainer = document.querySelector(".project-list");
   const submitNewProjContainer = document.querySelector(
     ".submit-new-proj-container"
   );
+  projectListContainer.setAttribute(
+    "style",
+    "background: #B2D6FF; display: block;"
+  );
+  addNewProject.setAttribute("style", "width: 100%;");
   if (pageContent.contains(submitNewProjContainer)) {
     addNewProject.removeEventListener("click", newProjectActions);
   }
