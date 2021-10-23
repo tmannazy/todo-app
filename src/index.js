@@ -178,12 +178,22 @@ const closeNewProjectContainer = () => {
   const closeNewProjectBtn = document
     .querySelector(".close-new-project-btn")
     .addEventListener("click", () => {
-      //   const projectListContainer = document
-      //     .querySelector(".project-list")
-      //     .classList.toggle("project-list");
       document.querySelector(".submit-new-proj-container").remove();
       addNewProject.addEventListener("click", newProjectActions);
+      showProjectListAfter();
     });
+};
+
+const showProjectListAfter = () => {
+  const projectListContainer = document.querySelector(".project-list");
+  const project = document.querySelector(".project");
+  projectListContainer.setAttribute("style", "display: none;");
+  project.addEventListener("mouseover", () => {
+    projectListContainer.style.display = "block";
+  });
+  project.addEventListener("mouseout", () => {
+    projectListContainer.style.display = "none";
+  });
 };
 
 const delAddedProjItem = () => {
