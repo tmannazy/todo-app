@@ -50,7 +50,6 @@ nav {
 
 nav ul>li {
     list-style: none;
-    text-align: justify;
     margin-bottom: 10px;
 }
 
@@ -83,10 +82,10 @@ nav li>a {
     margin-top: 5px;
 }
 
-.del-project-container {
-    display: inline-block;
-    margin-left: 15px;
+.project-list li:nth-child(n+4) {
+    display: flex;
     margin-top: 0;
+    justify-content: space-between;
 }
 
 .del-project {
@@ -111,6 +110,19 @@ nav li>a {
     border-radius: 5px;
 }
 
+.project-input {
+    padding: 5px;
+    outline: none;
+    border: none;
+    border-radius: 2px;
+    margin-bottom: 7px;
+}
+
+.submit-new-proj-container>button {
+    margin-left: 10px;
+    padding: 7px;
+}
+
 .display-todos {
     grid-area: display-todos;
 }
@@ -119,7 +131,7 @@ nav li>a {
     display: grid;
     width: 100%;
     margin: 0 auto;
-    grid-template-columns: 4fr 30px 9fr;
+    grid-template-columns: 2fr 30px 9fr;
     grid-template-rows: auto;
     grid-template-areas:
         "nav display-todos display-todos";
