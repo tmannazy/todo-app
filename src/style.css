@@ -84,12 +84,12 @@ nav li>a {
 
 .project-list li:nth-child(n+4) {
     display: flex;
-    margin-top: 0;
     justify-content: space-between;
 }
 
 .del-project-container {
     margin-right: 10px;
+    margin-bottom: 5px;
 }
 
 .del-project {
@@ -122,8 +122,13 @@ nav li>a {
     margin-bottom: 7px;
 }
 
+.submit-new-proj-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
 .submit-new-proj-container>button {
-    margin-left: 10px;
     padding: 7px;
 }
 
