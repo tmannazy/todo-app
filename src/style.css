@@ -88,6 +88,10 @@ nav li>a {
     justify-content: space-between;
 }
 
+.del-project-container {
+    margin-right: 10px;
+}
+
 .del-project {
     outline: none;
     cursor: pointer;
