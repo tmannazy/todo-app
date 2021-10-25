@@ -187,10 +187,21 @@ const closeNewProjectContainer = () => {
 const showProjectListAfter = () => {
   const projectListContainer = document.querySelector(".project-list");
   const project = document.querySelector(".project");
+  const submitNewProjContainer = document.querySelector(
+    ".submit-new-proj-container"
+  );
+
   projectListContainer.setAttribute("style", "display: none;");
-  project.addEventListener("mouseover", () => {
+  if (!pageContent.contains(submitNewProjContainer)) {
+    project.addEventListener("mouseover", () => {
+      projectListContainer.style.display = "block";
+    });
+  }
+
+  if (pageContent.contains(addNewProject)) {
     projectListContainer.style.display = "block";
-  });
+  }
+
   project.addEventListener("mouseout", () => {
     projectListContainer.style.display = "none";
   });
