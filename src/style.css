@@ -12,7 +12,7 @@ body {
 
 header {
     display: flex;
-    background-color: black;
+    background-color: #360568;
     justify-content: space-between;
 }
 
@@ -155,7 +155,11 @@ nav li>a {
     grid-template-rows: auto;
     grid-template-areas: "task-checkbox-container task-checkbox-container";
     margin-left: 50px;
+    margin-bottom: 10px;
     padding: 10px 50px;
+    border: 2px solid #fff;
+    background-color: #360568;
+    color: #A5E6BA;
 }
 
 .task-checkbox-container {
