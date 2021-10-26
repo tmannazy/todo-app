@@ -130,6 +130,9 @@ nav li>a {
 
 .submit-new-proj-container>button {
     padding: 7px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    text-align: center;
 }
 
 .display-todos {
@@ -144,4 +147,17 @@ nav li>a {
     grid-template-rows: auto;
     grid-template-areas:
         "nav display-todos display-todos";
+}
+
+.task-container {
+    display: grid;
+    grid-template-columns: 3fr 12fr;
+    grid-template-rows: auto;
+    grid-template-areas: "task-checkbox-container task-checkbox-container";
+    margin-left: 50px;
+    padding: 10px 50px;
+}
+
+.task-checkbox-container {
+    grid-area: task-checkbox-container;
 }
