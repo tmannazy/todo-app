@@ -120,8 +120,12 @@ homeBtn.addEventListener("click", () => {
   };
 
   const showAllTodoItems = () => {
-    storeTodoItemsToLocalStorage().forEach((todoItem) => {
-      todosContainerDisplay.appendChild(displayTodos(todoItem));
+    storeTodoItemsToLocalStorage().reduce((acc, obj) => {
+      storeProjectsToLocalStorage().some((projectItem) => {
+        if (obj["project"].toLowerCase() === projectItem.toLowerCase()) {
+          todosContainerDisplay.appendChild(displayTodos(obj));
+        }
+      });
     });
   };
 
