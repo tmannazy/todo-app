@@ -167,6 +167,22 @@ nav li>a {
     grid-area: task-checkbox-container;
 }
 
+.form-div {
+    z-index: 3;
+    position: absolute;
+    width: 30%;
+    top: 10rem;
+    left: 40%;
+    border: 2px solid #ae035f;
+    background-color: #A5E6BA
+}
+
+#todo-form {
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+}
+
 footer {
     width: 100%;
     background-color: #7785AC;
