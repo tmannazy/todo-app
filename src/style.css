@@ -41,6 +41,17 @@ h1 {
     padding: 20px;
 }
 
+.content {
+    display: grid;
+    width: 100%;
+    margin: 0 auto;
+    grid-template-columns: 2fr 30px 9fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "nav display-todos display-todos";
+    min-height: calc(100vh - 150px);
+}
+
 nav {
     padding-top: 20px;
     padding-left: 30px;
@@ -139,16 +150,6 @@ nav li>a {
     grid-area: display-todos;
 }
 
-.content {
-    display: grid;
-    width: 100%;
-    margin: 0 auto;
-    grid-template-columns: 2fr 30px 9fr;
-    grid-template-rows: auto;
-    grid-template-areas:
-        "nav display-todos display-todos";
-}
-
 .task-container {
     display: grid;
     grid-template-columns: 3fr 12fr;
@@ -164,4 +165,20 @@ nav li>a {
 
 .task-checkbox-container {
     grid-area: task-checkbox-container;
+}
+
+footer {
+    width: 100%;
+    background-color: #7785AC;
+    color: #360568;
+    text-align: center;
+    height: 70px;
+}
+
+footer p {
+    font-weight: 800;
+    font-family: 'Pacifico', cursive;
+    font-size: x-large;
+    text-shadow: 6px 7px 8px rgba(230, 215, 248, 0.8);
+    padding-top: 10px;
 }
