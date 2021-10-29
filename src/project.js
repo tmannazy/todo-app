@@ -50,14 +50,20 @@ const deleteProjectItem = (removeItemIndex) => {
 };
 
 const storeProjectsToLocalStorage = (newProject) => {
-  localStorage.setItem("projectsList", JSON.stringify(projectsList));
   const getStoredProjects = JSON.parse(
     localStorage.getItem("projectsList") || "[]"
   );
   if (!(newProject === undefined)) {
     getStoredProjects.push(newProject);
   } else if (newProject === undefined) return getStoredProjects;
+  localStorage.setItem("projectsList", JSON.stringify(projectsList));
   localStorage.setItem("projectsList", JSON.stringify(getStoredProjects));
+  return getStoredProjects;
+};
+
+const displayDefaultProjects = () => {
+  localStorage.setItem("projectsList", JSON.stringify(projectsList));
+  const getStoredProjects = JSON.parse(localStorage.getItem("projectsList"));
   return getStoredProjects;
 };
 
@@ -67,4 +73,5 @@ export {
   createNewProjectInput,
   projectsList,
   storeProjectsToLocalStorage,
+  displayDefaultProjects,
 };
