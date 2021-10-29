@@ -122,9 +122,8 @@ homeBtn.addEventListener("click", () => {
   const showAllTodoItems = () => {
     storeTodoItemsToLocalStorage().reduce((acc, obj) => {
       storeProjectsToLocalStorage().filter((projectItem) => {
-        if (acc["project"].toLowerCase() === projectItem.toLowerCase()) {
-          todosContainerDisplay.appendChild(displayTodos(acc));
-          acc = obj;
+        if (obj["project"].toLowerCase() === projectItem.toLowerCase()) {
+          todosContainerDisplay.appendChild(displayTodos(obj));
         }
       });
     });
