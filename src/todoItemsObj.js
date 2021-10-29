@@ -38,7 +38,7 @@ const storeTodoItemsToLocalStorage = (newTodo) => {
     );
     return defaultTodoItem;
   }
-  const getStoredTodoItems = JSON.parse(
+  let getStoredTodoItems = JSON.parse(
     localStorage.getItem("todoLists") || "[]"
   );
   if (!(newTodo === undefined || newTodo === null))
@@ -50,6 +50,7 @@ const storeTodoItemsToLocalStorage = (newTodo) => {
     "todoLists",
     JSON.stringify(getStoredTodoItems)
   );
+  getStoredTodoItems = JSON.parse(localStorage.getItem("todoLists"));
   return getStoredTodoItems;
 };
 
