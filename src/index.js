@@ -120,13 +120,14 @@ homeBtn.addEventListener("click", () => {
   };
 
   const showAllTodoItems = () => {
-    storeTodoItemsToLocalStorage().reduce((acc, obj) => {
+    const todoData = storeTodoItemsToLocalStorage();
+    todoData.reduce((acc, obj) => {
       storeProjectsToLocalStorage().filter((projectItem) => {
         if (obj["project"].toLowerCase() === projectItem.toLowerCase()) {
           todosContainerDisplay.appendChild(displayTodos(obj));
         }
       });
-    });
+    }, {});
   };
 
   if (!todosContainerDisplay.hasChildNodes()) {
