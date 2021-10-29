@@ -1,4 +1,4 @@
-import { projectsList, storeProjectsToLocalStorage } from "./project";
+import { storeProjectsToLocalStorage, displayDefaultProjects } from "./project";
 
 const menuItems = ["home", "today", "week", "project"],
   nav = document.createElement("nav"),
@@ -12,7 +12,7 @@ const sideMenu = () => {
       const span = document.createElement("span"),
         projUnorderedList = document.createElement("ul"),
         button = document.createElement("button"),
-        projects = storeProjectsToLocalStorage();
+        projects = displayDefaultProjects();
       projUnorderedList.setAttribute("class", "project-list");
 
       span.textContent = `${element} ▾`;
