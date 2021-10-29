@@ -88,6 +88,9 @@ const save = () => {
       project
     );
     const genFormObjects = myTodoList.push(userTodoEntries);
+    const emptyProjectContainer = document.querySelector(".empty-project");
+    if (pageContent.contains(emptyProjectContainer))
+      todosContainerDisplay.textContent = "";
     todosContainerDisplay.appendChild(displayTodos(myTodoList));
     storeTodoItemsToLocalStorage(userTodoEntries);
   });
